@@ -1,445 +1,702 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Handcrafted Jewellery by Praju — Artisan earrings, necklaces, bracelets & custom pieces. Trendy, affordable, made with love in India." />
-  <meta name="keywords" content="handcrafted jewellery, earrings India, necklaces, custom jewellery, artisan jewellery, Praju" />
-  <meta property="og:title" content="Handcrafted Jewellery by Praju" />
-  <meta property="og:description" content="Artisan jewellery for the fashion-forward soul. Shop earrings, necklaces, bracelets & custom pieces." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="images/og-cover.jpg" />
-  <title>Handcrafted Jewellery by Praju ✦</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💛</text></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400;600&family=Noto+Sans+Devanagari:wght@300;400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Handcrafted Jewellery by Praju — Artisan earrings, necklaces, bracelets & custom pieces. Made with love in India."/>
+<title>Handcrafted Jewellery by Praju ✦</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💛</text></svg>"/>
+<style>
+/* ── TOKENS ── */
+:root{
+  --gold:#C9A96E;--gold-d:#A07840;--gold-l:#F5E6C8;--gold-p:#FDF6EC;
+  --rose:#E8748A;--rose-l:#FCE4EC;
+  --ink:#1A1208;--mid:#6B5744;--muted:#A8937E;
+  --cream:#FFF8F0;--white:#fff;
+  --ff:'Georgia',serif;--ffs:'Segoe UI',Arial,sans-serif;
+  --r:12px;--rr:999px;
+  --sh:0 4px 24px rgba(45,27,14,.1);--sh2:0 12px 48px rgba(45,27,14,.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ffs);background:var(--cream);color:var(--ink);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{border:none;background:none;font-family:inherit;cursor:pointer}
+::selection{background:var(--gold-l)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 2rem;background:rgba(26,18,8,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,169,110,.15);
+}
+.logo{font-family:var(--ff);font-size:1.5rem;color:var(--gold);display:flex;align-items:center;gap:.4rem}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,212,176,.7);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.cart-btn{
+  position:relative;background:var(--gold);color:var(--ink);
+  border-radius:var(--rr);padding:.45rem 1rem;font-size:.72rem;
+  letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  display:flex;align-items:center;gap:.4rem;cursor:pointer;
+}
+.cart-btn:hover{background:var(--gold-d);color:#fff}
+#cartCount{
+  background:var(--rose);color:#fff;border-radius:50%;
+  width:18px;height:18px;font-size:.62rem;display:none;
+  align-items:center;justify-content:center;
+}
+#cartCount.show{display:flex}
+.burger{display:none;flex-direction:column;gap:5px;padding:4px}
+.burger span{display:block;width:22px;height:1.5px;background:var(--gold)}
+@media(max-width:768px){
+  nav{padding:.85rem 1.2rem}
+  .nav-links{
+    display:none;position:fixed;top:0;right:0;width:70vw;height:100vh;
+    background:var(--ink);flex-direction:column;justify-content:center;
+    align-items:center;gap:2.5rem;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{color:var(--gold-l);font-size:.85rem}
+  .burger{display:flex}
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#1A1208 0%,#2D1B0E 60%,#3D2415 100%);
+  position:relative;overflow:hidden;padding:6rem 1.5rem 3rem;text-align:center;
+}
+.hero-orb{
+  position:absolute;border-radius:50%;filter:blur(70px);opacity:.3;
+  pointer-events:none;
+}
+.hero-orb-1{width:400px;height:400px;background:var(--gold);top:-80px;right:-80px;animation:float 8s ease-in-out infinite}
+.hero-orb-2{width:300px;height:300px;background:var(--rose);bottom:-50px;left:-60px;animation:float 10s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+.hero-content{position:relative;z-index:2;max-width:720px;margin:0 auto}
+.hero-tag{
+  display:inline-block;font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1.5rem;
+}
+.hero h1{
+  font-family:var(--ff);font-size:clamp(2.8rem,9vw,5.5rem);font-weight:400;
+  color:var(--gold-l);line-height:1.1;margin-bottom:1.25rem;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{
+  color:rgba(232,212,176,.65);font-size:.95rem;line-height:1.9;
+  margin-bottom:2.5rem;letter-spacing:.03em;
+}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hero-marathi{
+  margin-top:2rem;font-size:.85rem;
+  color:rgba(201,169,110,.4);letter-spacing:.1em;
+}
+.float-pill{
+  position:absolute;background:rgba(255,255,255,.07);backdrop-filter:blur(10px);
+  border:1px solid rgba(201,169,110,.2);border-radius:var(--rr);
+  padding:.6rem 1.1rem;color:var(--gold-l);font-size:.75rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.float-pill-dot{width:7px;height:7px;border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
+.fp1{top:22%;left:3%;animation:floatc 7s ease-in-out infinite}
+.fp2{bottom:22%;right:3%;animation:floatc 9s ease-in-out infinite reverse}
+@keyframes floatc{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@media(max-width:600px){.float-pill{display:none}}
+
+/* ── MARQUEE ── */
+.marquee{overflow:hidden;background:var(--gold);padding:.75rem 0}
+.marquee-inner{
+  display:flex;gap:2rem;white-space:nowrap;
+  animation:marquee 22s linear infinite;
+}
+.marquee-inner span{font-size:.62rem;letter-spacing:.18em;color:var(--ink);font-weight:700}
+.marquee-dot{opacity:.4}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.8rem 1.8rem;border-radius:var(--rr);
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  transition:all .25s ease;white-space:nowrap;cursor:pointer;
+}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 4px 20px rgba(201,169,110,.35)}
+.btn-gold:hover{background:var(--gold-d);color:#fff;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--gold-l);border:1px solid rgba(201,169,110,.4)}
+.btn-ghost:hover{background:rgba(201,169,110,.1);border-color:var(--gold)}
+.btn-outline{border:1px solid var(--gold-d);color:var(--gold-d)}
+.btn-outline:hover{background:var(--gold-d);color:#fff}
+.btn-wa{background:#25D366;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.35)}
+.btn-wa:hover{background:#1EBE58;transform:translateY(-2px)}
+.btn-full{width:100%;justify-content:center}
+
+/* ── SECTION HEADER ── */
+.sec{padding:5rem 0}
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+@media(max-width:600px){.container{padding:0 1.1rem}}
+.sec-eyebrow{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem;display:block}
+.sec-title{font-family:var(--ff);font-size:clamp(2rem,5vw,3rem);font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:.9rem}
+.sec-title em{font-style:italic;color:var(--gold-d)}
+.sec-sub{color:var(--muted);font-size:.88rem;line-height:1.9;max-width:480px}
+.text-center{text-align:center}
+.text-center .sec-sub{margin:0 auto}
+
+/* ── STATS ── */
+.stats{background:var(--white);padding:4rem 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center}
+.stat{padding:1.5rem}
+.stat-num{font-family:var(--ff);font-size:3rem;color:var(--gold-d);line-height:1}
+.stat-label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── PRODUCTS ── */
+.products{padding:5.5rem 0;background:var(--cream)}
+.filter-tabs{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem}
+.ftab{
+  padding:.55rem 1.3rem;border-radius:var(--rr);border:1px solid rgba(201,169,110,.25);
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);
+  transition:all .2s ease;cursor:pointer;
+}
+.ftab:hover,.ftab.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.25rem}
+.card{
+  background:var(--white);border-radius:16px;overflow:hidden;
+  border:1px solid rgba(201,169,110,.12);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
+.card-img{
+  aspect-ratio:1;background:var(--gold-p);display:flex;
+  align-items:center;justify-content:center;font-size:3.5rem;
+  position:relative;overflow:hidden;transition:transform .3s ease;
+}
+.card:hover .card-img{transform:scale(1.04)}
+.card-badge{
+  position:absolute;top:.6rem;left:.6rem;
+  background:var(--rose);color:#fff;
+  font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.22rem .6rem;border-radius:var(--rr);
+}
+.badge-new{background:var(--gold-d)}
+.card-body{padding:1.1rem}
+.card-cat{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.card-name{font-family:var(--ff);font-size:1.1rem;color:var(--ink);margin-bottom:.25rem;line-height:1.35}
+.card-mat{font-size:.72rem;color:var(--muted);margin-bottom:.85rem}
+.card-footer{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.card-price{font-family:var(--ff);font-size:1.25rem;color:var(--ink)}
+.card-compare{font-size:.75rem;color:var(--muted);text-decoration:line-through;margin-left:.2rem}
+.add-btn{
+  background:var(--gold);color:var(--ink);border-radius:var(--rr);
+  padding:.45rem .9rem;font-size:.65rem;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:700;transition:all .2s;cursor:pointer;
+}
+.add-btn:hover{background:var(--gold-d);color:#fff}
+.products-more{text-align:center;margin-top:2.5rem}
+
+/* ── STORY ── */
+.story{padding:6rem 0;background:var(--white)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.story-visual{
+  aspect-ratio:4/5;border-radius:20px;
+  background:linear-gradient(135deg,#E8D4B0 0%,var(--gold) 50%,var(--gold-d) 100%);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:2.5rem;
+}
+.story-quote{font-family:var(--ff);font-size:1.3rem;color:var(--ink);line-height:1.7;font-style:italic;margin-bottom:.75rem}
+.story-author{font-size:.8rem;color:rgba(26,18,8,.6)}
+.story-body{color:var(--mid);line-height:2;font-size:.9rem;margin-bottom:1.25rem}
+.pillars{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.pillar{
+  display:flex;align-items:flex-start;gap:.9rem;
+  padding:.9rem;border-radius:var(--r);
+  background:var(--gold-p);border:1px solid rgba(201,169,110,.2);
+}
+.pillar-icon{font-size:1.3rem;flex-shrink:0}
+.pillar strong{display:block;font-size:.82rem;color:var(--ink);margin-bottom:.15rem}
+.pillar p{font-size:.76rem;color:var(--muted);line-height:1.6}
+@media(max-width:900px){.story-grid{grid-template-columns:1fr;gap:2.5rem}}
+
+/* ── PROCESS ── */
+.process{padding:5rem 0;background:var(--gold-p)}
+.steps{display:flex;align-items:flex-start;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.step{flex:1;min-width:160px;max-width:200px;text-align:center;padding:1.5rem .8rem}
+.step-num{font-family:var(--ff);font-size:2.5rem;color:rgba(201,169,110,.3);line-height:1;margin-bottom:.5rem}
+.step-icon{font-size:1.8rem;margin-bottom:.75rem}
+.step h3{font-family:var(--ff);font-size:1.05rem;color:var(--ink);margin-bottom:.5rem;font-weight:600}
+.step p{font-size:.78rem;color:var(--mid);line-height:1.7}
+.step-arrow{font-size:1.3rem;color:var(--gold);align-self:center;padding:0 .25rem}
+@media(max-width:700px){.step-arrow{display:none}}
+
+/* ── CUSTOM ── */
+.custom-sec{
+  padding:6rem 0;
+  background:linear-gradient(135deg,#1A1208 0%,#2D1B0E 100%);
+}
+.custom-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.custom-eyebrow{color:rgba(232,212,176,.7) !important}
+.custom-title{color:var(--gold-l)}
+.custom-title em{color:var(--gold)}
+.custom-body{color:rgba(232,212,176,.65);line-height:2;font-size:.88rem;margin-bottom:1.25rem}
+.custom-list{list-style:none;margin-bottom:1.75rem}
+.custom-list li{
+  color:rgba(232,212,176,.65);font-size:.82rem;
+  padding:.6rem 0;border-bottom:1px solid rgba(201,169,110,.1);
+}
+.custom-note{font-size:.72rem;color:var(--muted);margin-top:.6rem}
+.form-card{background:var(--cream);border-radius:20px;padding:2rem;box-shadow:var(--sh2)}
+.form-card h3{font-family:var(--ff);font-size:1.4rem;color:var(--ink);margin-bottom:.3rem}
+.form-card p{font-size:.78rem;color:var(--muted);margin-bottom:1.5rem}
+.fg{margin-bottom:1.1rem}
+.fg label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:.4rem}
+.fg input,.fg textarea,.fg select{
+  width:100%;padding:.7rem .9rem;border:1px solid rgba(201,169,110,.25);
+  border-radius:var(--r);background:var(--white);color:var(--ink);font-size:.88rem;
+  outline:none;font-family:inherit;transition:border-color .2s;appearance:none;
+}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold)}
+.fg input[type="range"]{padding:0;border:none;accent-color:var(--gold)}
+.budget-val{font-family:var(--ff);font-size:1.05rem;color:var(--gold-d);margin-top:.3rem}
+@media(max-width:900px){.custom-grid{grid-template-columns:1fr;gap:2.5rem}}
+
+/* ── REVIEWS ── */
+.reviews{padding:5rem 0;background:var(--white)}
+.reviews-track{
+  display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;padding-bottom:.5rem;
+}
+.reviews-track::-webkit-scrollbar{display:none}
+.rev-card{
+  flex-shrink:0;width:300px;scroll-snap-align:start;
+  background:var(--gold-p);border-radius:16px;padding:1.75rem;
+  border:1px solid rgba(201,169,110,.2);
+}
+.rev-stars{color:var(--gold);margin-bottom:.85rem;font-size:.9rem}
+.rev-text{font-family:var(--ff);font-size:1rem;color:var(--ink);line-height:1.7;font-style:italic;margin-bottom:1.25rem}
+.rev-foot{display:flex;align-items:center;gap:.65rem}
+.rev-avatar{
+  width:38px;height:38px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),var(--rose));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-family:var(--ff);font-size:1rem;flex-shrink:0;
+}
+.rev-name{font-size:.82rem;font-weight:700;color:var(--ink)}
+.rev-meta{font-size:.7rem;color:var(--muted)}
+
+/* ── INSTAGRAM ── */
+.insta{padding:5rem 0;background:var(--cream)}
+.insta-header{text-align:center;margin-bottom:2.5rem}
+.insta-header .btn{margin-top:1.25rem}
+.insta-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:3px;
+}
+.insta-item{
+  aspect-ratio:1;background:var(--gold-p);display:flex;
+  align-items:center;justify-content:center;font-size:2.2rem;
+  overflow:hidden;cursor:pointer;position:relative;
+}
+.insta-item-inner{transition:transform .3s ease}
+.insta-item:hover .insta-item-inner{transform:scale(1.1)}
+.insta-overlay{
+  position:absolute;inset:0;background:rgba(26,18,8,.55);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .3s;font-size:.65rem;
+  letter-spacing:.1em;text-transform:uppercase;color:#fff;
+}
+.insta-item:hover .insta-overlay{opacity:1}
+@media(max-width:600px){.insta-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* ── CONTACT ── */
+.contact{padding:5.5rem 0;background:var(--gold-p)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-body{color:var(--mid);line-height:2;font-size:.88rem;margin-bottom:1.5rem}
+.contact-methods{display:flex;flex-direction:column;gap:.85rem}
+.cmethod{
+  display:flex;align-items:center;gap:.85rem;
+  padding:.9rem 1.1rem;border-radius:var(--r);
+  background:var(--white);border:1px solid rgba(201,169,110,.2);
+  transition:all .25s;
+}
+.cmethod:hover{transform:translateX(3px);box-shadow:var(--sh)}
+.cmethod-wa{color:#25D366}
+.cmethod-wa:hover{background:#f0fff4;border-color:#25D366}
+.cmethod-ig{color:#E1306C}
+.cmethod-ig:hover{background:#fff0f5;border-color:#E1306C}
+.cmethod strong{display:block;font-size:.78rem;color:var(--ink)}
+.cmethod span{font-size:.82rem;color:var(--mid)}
+.hours-card{background:var(--white);border-radius:16px;padding:1.75rem;border:1px solid rgba(201,169,110,.2);box-shadow:var(--sh)}
+.hours-card h3{font-family:var(--ff);font-size:1.15rem;color:var(--ink);margin-bottom:1rem}
+.hrow{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid rgba(201,169,110,.15);font-size:.82rem;color:var(--mid)}
+.hrow:last-child{border-bottom:none}
+.htime{font-weight:700;color:var(--gold-d)}
+.guarantee{display:flex;align-items:center;gap:.6rem;margin-top:1.1rem;padding:.7rem;background:var(--gold-p);border-radius:var(--r);font-size:.75rem;color:var(--mid)}
+.badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.25rem}
+.badge{padding:.5rem 1rem;border-radius:var(--rr);background:var(--white);border:1px solid rgba(201,169,110,.2);font-size:.75rem;color:var(--ink)}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:2.5rem}}
+
+/* ── FOOTER ── */
+footer{background:var(--ink)}
+.footer-top{padding:3.5rem 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.footer-logo{font-family:var(--ff);font-size:1.6rem;color:var(--gold);margin-bottom:.75rem}
+.footer-tag{font-size:.82rem;color:var(--muted);line-height:1.8;margin-bottom:.4rem}
+.footer-mr{font-size:.75rem;color:rgba(168,147,126,.5);margin-bottom:1.25rem}
+.footer-social{display:flex;gap:.75rem}
+.footer-social a{
+  width:34px;height:34px;border-radius:50%;border:1px solid rgba(201,169,110,.2);
+  color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:.85rem;
+  transition:all .2s;
+}
+.footer-social a:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.footer-col h4{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.footer-col a{font-size:.82rem;color:var(--muted);transition:color .2s}
+.footer-col a:hover{color:var(--gold-l)}
+.footer-bottom{border-top:1px solid rgba(201,169,110,.1);padding:1.25rem 0}
+.footer-bottom-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;font-size:.75rem;color:var(--muted)}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+
+/* ── WA FAB ── */
+.wa-fab{
+  position:fixed;bottom:1.75rem;right:1.75rem;z-index:90;
+  background:#25D366;color:#fff;border-radius:var(--rr);
+  padding:.75rem 1.1rem .75rem .75rem;display:flex;align-items:center;gap:.5rem;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);transition:all .25s;font-size:.75rem;font-weight:700;
+}
+.wa-fab:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(37,211,102,.5)}
+.wa-fab svg{flex-shrink:0}
+@media(max-width:480px){.wa-fab span{display:none}.wa-fab{border-radius:50%;padding:.85rem}}
+
+/* ── CART SIDEBAR ── */
+.cart-overlay{position:fixed;inset:0;background:rgba(26,18,8,.6);z-index:150;opacity:0;visibility:hidden;transition:all .3s;backdrop-filter:blur(4px)}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-sidebar{
+  position:fixed;top:0;right:-420px;width:100%;max-width:390px;height:100vh;
+  background:var(--cream);z-index:160;display:flex;flex-direction:column;
+  transition:right .35s cubic-bezier(.25,.46,.45,.94);box-shadow:var(--sh2);
+}
+.cart-sidebar.open{right:0}
+.cart-head{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;border-bottom:1px solid rgba(201,169,110,.2)}
+.cart-head h3{font-family:var(--ff);font-size:1.3rem;color:var(--ink)}
+.cart-close{font-size:1.2rem;color:var(--muted);transition:color .2s;cursor:pointer}
+.cart-close:hover{color:var(--ink)}
+.cart-items{flex:1;overflow-y:auto;padding:1.25rem 1.5rem}
+.cart-empty-msg{text-align:center;padding:3rem 1rem}
+.cart-empty-msg span{font-size:2.5rem;display:block;margin-bottom:.75rem}
+.cart-empty-msg p{color:var(--muted);font-size:.88rem;margin-bottom:1.25rem}
+.cart-item-row{display:flex;gap:.9rem;padding:.85rem 0;border-bottom:1px solid rgba(201,169,110,.15)}
+.ci-img{width:64px;height:64px;border-radius:var(--r);background:var(--gold-p);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0}
+.ci-name{font-size:.88rem;color:var(--ink);margin-bottom:.2rem}
+.ci-price{font-family:var(--ff);font-size:1.05rem;color:var(--gold-d)}
+.ci-remove{font-size:.72rem;color:var(--muted);cursor:pointer;margin-top:.3rem;display:inline-block}
+.ci-remove:hover{color:var(--rose)}
+.cart-foot{padding:1.25rem 1.5rem;border-top:1px solid rgba(201,169,110,.2);background:var(--white)}
+.cart-total-row{display:flex;justify-content:space-between;margin-bottom:.9rem;font-size:.88rem;color:var(--mid)}
+.cart-total-row span:last-child{font-family:var(--ff);font-size:1.25rem;color:var(--ink)}
+.cart-note{font-size:.68rem;color:var(--muted);text-align:center;margin-top:.6rem}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:6rem;right:1.75rem;z-index:200;
+  background:var(--ink);color:var(--gold-l);
+  padding:.75rem 1.4rem;border-radius:var(--rr);font-size:.8rem;
+  display:flex;align-items:center;gap:.4rem;
+  opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateY(0)}
+</style>
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════ LOADER ══ -->
-  <div class="loader" id="loader" style="display:none">
-    <div class="loader__inner">
-      <div class="loader__symbol">✦</div>
-      <p class="loader__text">Handcrafted Jewellery by Praju</p>
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">✦ Praju</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#collections" onclick="closeMenu()">Collections</a></li>
+    <li><a href="#story" onclick="closeMenu()">Our Story</a></li>
+    <li><a href="#custom" onclick="closeMenu()">Custom</a></li>
+    <li><a href="#reviews" onclick="closeMenu()">Reviews</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart <span id="cartCount">0</span>
+    </button>
+    <button class="burger" id="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="float-pill fp1">
+    <div class="float-pill-dot" style="background:var(--gold)"></div>New Drop ✨
+  </div>
+  <div class="float-pill fp2">
+    <div class="float-pill-dot" style="background:var(--rose)"></div>Custom Orders Open
+  </div>
+  <div class="hero-content">
+    <span class="hero-tag">✦ Handcrafted with love, worn with pride ✦</span>
+    <h1>Jewellery that<br/><em>tells your story</em></h1>
+    <p>Artisan earrings, necklaces &amp; custom pieces<br/>crafted for India's fashion-forward souls</p>
+    <div class="hero-btns">
+      <a href="#collections" class="btn btn-gold">Shop Collection</a>
+      <a href="#custom" class="btn btn-ghost">Custom Order ✦</a>
+    </div>
+    <p class="hero-marathi">हस्तनिर्मित दागिने</p>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-inner">
+    <span>HANDCRAFTED</span><span class="marquee-dot">✦</span>
+    <span>ARTISAN JEWELLERY</span><span class="marquee-dot">✦</span>
+    <span>MADE IN INDIA</span><span class="marquee-dot">✦</span>
+    <span>BY PRAJU</span><span class="marquee-dot">✦</span>
+    <span>CUSTOM ORDERS</span><span class="marquee-dot">✦</span>
+    <span>FAST DELIVERY</span><span class="marquee-dot">✦</span>
+    <span>HANDCRAFTED</span><span class="marquee-dot">✦</span>
+    <span>ARTISAN JEWELLERY</span><span class="marquee-dot">✦</span>
+    <span>MADE IN INDIA</span><span class="marquee-dot">✦</span>
+    <span>BY PRAJU</span><span class="marquee-dot">✦</span>
+    <span>CUSTOM ORDERS</span><span class="marquee-dot">✦</span>
+    <span>FAST DELIVERY</span><span class="marquee-dot">✦</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Happy Customers</div></div>
+      <div class="stat"><div class="stat-num">120+</div><div class="stat-label">Unique Designs</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Handcrafted</div></div>
+      <div class="stat"><div class="stat-num">48h</div><div class="stat-label">Custom Delivery</div></div>
     </div>
   </div>
+</div>
 
-  <!-- ═══════════════════════════════════════ CURSOR ══ -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursorFollower"></div>
-
-  <!-- ═══════════════════════════════════════ NAV ══════ -->
-  <nav class="nav" id="nav">
-    <div class="nav__logo">
-      <span class="nav__logo-mark">✦</span>
-      <span class="nav__logo-text">Praju</span>
+<!-- COLLECTIONS -->
+<section class="products" id="collections">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:2.5rem">
+      <span class="sec-eyebrow">✦ Explore ✦</span>
+      <h2 class="sec-title">Our Collections</h2>
+      <p class="sec-sub">From everyday elegance to statement pieces — discover jewellery that speaks your language</p>
     </div>
-    <ul class="nav__links" id="navLinks">
-      <li><a href="#collections" class="nav__link">Collections</a></li>
-      <li><a href="#story" class="nav__link">Our Story</a></li>
-      <li><a href="#custom" class="nav__link">Custom</a></li>
-      <li><a href="#reviews" class="nav__link">Reviews</a></li>
-      <li><a href="#contact" class="nav__link">Contact</a></li>
-    </ul>
-    <div class="nav__actions">
-      <button class="nav__search" aria-label="Search" id="searchToggle">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </button>
-      <button class="nav__cart" id="cartToggle" aria-label="Cart">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-        <span class="nav__cart-count" id="cartCount">0</span>
-      </button>
-      <button class="nav__burger" id="burger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+    <div class="filter-tabs">
+      <button class="ftab active" onclick="filterP(this,'all')">All</button>
+      <button class="ftab" onclick="filterP(this,'earrings')">Earrings</button>
+      <button class="ftab" onclick="filterP(this,'necklace')">Necklaces</button>
+      <button class="ftab" onclick="filterP(this,'bracelet')">Bracelets</button>
+      <button class="ftab" onclick="filterP(this,'custom')">Custom</button>
     </div>
-  </nav>
+    <div class="grid" id="productGrid"></div>
+    <div class="products-more">
+      <a href="https://wa.me/919999999999?text=Hi%20Praju!%20I%20want%20to%20see%20more%20of%20your%20jewellery%20collection%20%F0%9F%92%9B" target="_blank" class="btn btn-outline">See All on WhatsApp ↗</a>
+    </div>
+  </div>
+</section>
 
-  <!-- Search overlay -->
-  <div class="search-overlay" id="searchOverlay">
-    <button class="search-overlay__close" id="searchClose">✕</button>
-    <div class="search-overlay__inner">
-      <p class="search-overlay__hint">What are you looking for?</p>
-      <input type="text" class="search-overlay__input" placeholder="Try 'gold earrings', 'bridal necklace'…" id="searchInput" />
-      <div class="search-overlay__tags">
-        <button class="tag" onclick="filterProducts('earrings')">Earrings</button>
-        <button class="tag" onclick="filterProducts('necklace')">Necklaces</button>
-        <button class="tag" onclick="filterProducts('bracelet')">Bracelets</button>
-        <button class="tag" onclick="filterProducts('custom')">Custom</button>
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-visual">
+        <div>
+          <p class="story-quote">"Every piece is a conversation between the maker and the wearer."</p>
+          <span class="story-author">— Praju</span>
+        </div>
+      </div>
+      <div>
+        <span class="sec-eyebrow">✦ Our Story ✦</span>
+        <h2 class="sec-title">Born from<br/><em>passion for craft</em></h2>
+        <p class="story-body">What started as a hobby — bending wire, stringing beads, hunting for the perfect stone — became something much bigger. Every earring, every necklace is a tiny universe crafted by hand, made for someone who believes jewellery is more than decoration.</p>
+        <p class="story-body">Praju jewellery is for the girl who notices details. The one who builds her look from the earring out. We make pieces that become part of your story.</p>
+        <div class="pillars">
+          <div class="pillar"><span class="pillar-icon">🤲</span><div><strong>Made by Hand</strong><p>Every piece crafted individually — no machines, no mass production</p></div></div>
+          <div class="pillar"><span class="pillar-icon">🌿</span><div><strong>Conscious Materials</strong><p>Skin-safe alloys, anti-tarnish coating, responsibly sourced stones</p></div></div>
+          <div class="pillar"><span class="pillar-icon">💛</span><div><strong>Made in India</strong><p>Rooted in Indian craft tradition, designed for today's aesthetic</p></div></div>
+        </div>
+        <a href="https://wa.me/919999999999" target="_blank" class="btn btn-gold">Chat with Praju ↗</a>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ═══════════════════════════════════════ HERO ═════ -->
-  <section class="hero" id="hero">
-    <div class="hero__bg">
-      <div class="hero__orb hero__orb--1"></div>
-      <div class="hero__orb hero__orb--2"></div>
-      <div class="hero__orb hero__orb--3"></div>
-      <div class="hero__grain"></div>
+<!-- PROCESS -->
+<section class="process">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3rem">
+      <span class="sec-eyebrow">✦ The Craft ✦</span>
+      <h2 class="sec-title">From idea to your hands</h2>
     </div>
-    <div class="hero__content">
-      <p class="hero__eyebrow reveal-up" style="--d:0.1s">✦ Handcrafted with love, worn with pride ✦</p>
-      <h1 class="hero__title reveal-up" style="--d:0.25s">
-        <span class="hero__title-line">Jewellery that</span>
-        <span class="hero__title-line hero__title-line--italic">tells your</span>
-        <span class="hero__title-line">story</span>
-      </h1>
-      <p class="hero__subtitle reveal-up" style="--d:0.45s">Artisan earrings, necklaces &amp; custom pieces<br/>crafted for India's fashion-forward souls</p>
-      <div class="hero__ctas reveal-up" style="--d:0.6s">
-        <a href="#collections" class="btn btn--gold">Shop Collection</a>
-        <a href="#custom" class="btn btn--ghost">Custom Order ✦</a>
-      </div>
-      <div class="hero__marathi reveal-up" style="--d:0.75s">
-        <span>हस्तनिर्मित दागिने</span>
-      </div>
-    </div>
-    <div class="hero__scroll-indicator">
-      <div class="hero__scroll-line"></div>
-      <span>scroll</span>
-    </div>
-    <!-- Floating jewellery cards -->
-    <div class="hero__float hero__float--1">
-      <div class="float-card">
-        <div class="float-card__dot float-card__dot--gold"></div>
-        <span>New Drop ✨</span>
-      </div>
-    </div>
-    <div class="hero__float hero__float--2">
-      <div class="float-card">
-        <div class="float-card__dot float-card__dot--rose"></div>
-        <span>Custom Orders Open</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════ MARQUEE ══ -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <span>HANDCRAFTED</span><span class="marquee-dot">✦</span>
-      <span>ARTISAN JEWELLERY</span><span class="marquee-dot">✦</span>
-      <span>MADE IN INDIA</span><span class="marquee-dot">✦</span>
-      <span>BY PRAJU</span><span class="marquee-dot">✦</span>
-      <span>CUSTOM ORDERS</span><span class="marquee-dot">✦</span>
-      <span>FAST DELIVERY</span><span class="marquee-dot">✦</span>
-      <span>HANDCRAFTED</span><span class="marquee-dot">✦</span>
-      <span>ARTISAN JEWELLERY</span><span class="marquee-dot">✦</span>
-      <span>MADE IN INDIA</span><span class="marquee-dot">✦</span>
-      <span>BY PRAJU</span><span class="marquee-dot">✦</span>
-      <span>CUSTOM ORDERS</span><span class="marquee-dot">✦</span>
-      <span>FAST DELIVERY</span><span class="marquee-dot">✦</span>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><div class="step-icon">💭</div><h3>You share your vision</h3><p>Send a reference image, describe the feeling, or browse our lookbook for inspo</p></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">02</div><div class="step-icon">✏️</div><h3>Praju designs</h3><p>We sketch your piece and share a preview on WhatsApp for approval</p></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">03</div><div class="step-icon">🔨</div><h3>Handcrafted for you</h3><p>Every bend, bead and detail placed by hand. Your piece is unique</p></div>
+      <div class="step-arrow">→</div>
+      <div class="step"><div class="step-num">04</div><div class="step-icon">📦</div><h3>Delivered with love</h3><p>Gift-wrapped and delivered to your door in 3–7 days</p></div>
     </div>
   </div>
+</section>
 
-  <!-- ═══════════════════════════════════════ STATS ════ -->
-  <section class="stats">
-    <div class="container">
-      <div class="stats__grid">
-        <div class="stat-card reveal-up" style="--d:0s">
-          <span class="stat-card__num" data-count="500">0</span><span class="stat-card__suffix">+</span>
-          <p class="stat-card__label">Happy Customers</p>
-        </div>
-        <div class="stat-card reveal-up" style="--d:0.1s">
-          <span class="stat-card__num" data-count="120">0</span><span class="stat-card__suffix">+</span>
-          <p class="stat-card__label">Unique Designs</p>
-        </div>
-        <div class="stat-card reveal-up" style="--d:0.2s">
-          <span class="stat-card__num" data-count="100">0</span><span class="stat-card__suffix">%</span>
-          <p class="stat-card__label">Handcrafted</p>
-        </div>
-        <div class="stat-card reveal-up" style="--d:0.3s">
-          <span class="stat-card__num" data-count="48">0</span><span class="stat-card__suffix">h</span>
-          <p class="stat-card__label">Custom Delivery</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════ COLLECTIONS ══ -->
-  <section class="collections" id="collections">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <p class="section-eyebrow">✦ Explore ✦</p>
-        <h2 class="section-title">Our Collections</h2>
-        <p class="section-sub">From everyday elegance to statement pieces — discover jewellery that speaks your language</p>
-      </div>
-
-      <!-- Filter tabs -->
-      <div class="filter-tabs reveal-up" style="--d:0.2s">
-        <button class="filter-tab filter-tab--active" data-filter="all">All</button>
-        <button class="filter-tab" data-filter="earrings">Earrings</button>
-        <button class="filter-tab" data-filter="necklace">Necklaces</button>
-        <button class="filter-tab" data-filter="bracelet">Bracelets</button>
-        <button class="filter-tab" data-filter="custom">Custom</button>
-      </div>
-
-      <!-- Product Grid -->
-      <div class="product-grid" id="productGrid">
-        <!-- Products injected by JS -->
-      </div>
-
-      <div class="collections__more reveal-up" style="--d:0.3s">
-        <a href="#contact" class="btn btn--outline">See All on WhatsApp ↗</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════ STORY ════ -->
-  <section class="story" id="story">
-    <div class="story__bg">
-      <div class="story__orb"></div>
-    </div>
-    <div class="container story__grid">
-      <div class="story__visual reveal-left">
-        <div class="story__img-frame">
-          <div class="story__img-placeholder">
-            <div class="story__img-inner">
-              <p class="story__img-quote">"Every piece is a conversation between<br/>the maker and the wearer."</p>
-              <span class="story__img-mark">— Praju</span>
-            </div>
-          </div>
-          <div class="story__img-badge">
-            <svg viewBox="0 0 100 100" class="story__badge-svg">
-              <path id="circlePath" fill="none" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"/>
-              <text class="story__badge-text">
-                <textPath href="#circlePath">HANDCRAFTED WITH LOVE • PRAJU • MADE IN INDIA •</textPath>
-              </text>
-            </svg>
-            <span class="story__badge-center">✦</span>
-          </div>
-        </div>
-      </div>
-      <div class="story__content reveal-right">
-        <p class="section-eyebrow">✦ Our Story ✦</p>
-        <h2 class="section-title story__title">Born from<br/><em>passion for craft</em></h2>
-        <p class="story__body">What started as a hobby — bending wire, stringing beads, hunting for the perfect stone — became something much bigger. Every earring, every necklace is a tiny universe crafted by hand, made for someone who believes jewellery is more than decoration.</p>
-        <p class="story__body">Praju jewellery is for the girl who notices details. The one who builds her look from the earring out. We make pieces that become part of your story.</p>
-        <div class="story__pillars">
-          <div class="story__pillar">
-            <span class="story__pillar-icon">🤲</span>
-            <div>
-              <strong>Made by Hand</strong>
-              <p>Every piece crafted individually — no machines, no mass production</p>
-            </div>
-          </div>
-          <div class="story__pillar">
-            <span class="story__pillar-icon">🌿</span>
-            <div>
-              <strong>Conscious Materials</strong>
-              <p>Skin-safe alloys, anti-tarnish coating, responsibly sourced stones</p>
-            </div>
-          </div>
-          <div class="story__pillar">
-            <span class="story__pillar-icon">💛</span>
-            <div>
-              <strong>Made in India</strong>
-              <p>Rooted in Indian craft tradition, designed for today's aesthetic</p>
-            </div>
-          </div>
-        </div>
-        <a href="#contact" class="btn btn--gold story__cta">Chat with Praju ↗</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════ PROCESS ══ -->
-  <section class="process">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <p class="section-eyebrow">✦ The Craft ✦</p>
-        <h2 class="section-title">From idea to your hands</h2>
-      </div>
-      <div class="process__steps">
-        <div class="process__step reveal-up" style="--d:0s">
-          <div class="process__step-num">01</div>
-          <div class="process__step-icon">💭</div>
-          <h3>You share your vision</h3>
-          <p>Send us a reference image, describe the feeling, or browse our lookbook for inspo</p>
-        </div>
-        <div class="process__connector reveal-up" style="--d:0.1s">→</div>
-        <div class="process__step reveal-up" style="--d:0.15s">
-          <div class="process__step-num">02</div>
-          <div class="process__step-icon">✏️</div>
-          <h3>Praju designs</h3>
-          <p>We sketch your piece, share a preview on WhatsApp for your approval before crafting</p>
-        </div>
-        <div class="process__connector reveal-up" style="--d:0.25s">→</div>
-        <div class="process__step reveal-up" style="--d:0.3s">
-          <div class="process__step-num">03</div>
-          <div class="process__step-icon">🔨</div>
-          <h3>Handcrafted for you</h3>
-          <p>Every bend, bead, and detail is placed by hand. Your piece is unique — no copies</p>
-        </div>
-        <div class="process__connector reveal-up" style="--d:0.4s">→</div>
-        <div class="process__step reveal-up" style="--d:0.45s">
-          <div class="process__step-num">04</div>
-          <div class="process__step-icon">📦</div>
-          <h3>Delivered with love</h3>
-          <p>Gift-wrapped, packed carefully, delivered to your door within 3–7 days</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════ CUSTOM ═══ -->
-  <section class="custom" id="custom">
-    <div class="custom__bg">
-      <div class="custom__orb"></div>
-    </div>
-    <div class="container custom__inner">
-      <div class="custom__content reveal-up">
-        <p class="section-eyebrow custom__eyebrow">✦ Personalised ✦</p>
-        <h2 class="section-title custom__title">Your imagination.<br/><em>Our craftsmanship.</em></h2>
-        <p class="custom__body">Want your name in a necklace? A design that matches your wedding outfit? A gift for your best friend that no one else has? We do all of that — and more.</p>
-        <ul class="custom__list">
+<!-- CUSTOM -->
+<section class="custom-sec" id="custom">
+  <div class="container">
+    <div class="custom-grid">
+      <div>
+        <span class="sec-eyebrow custom-eyebrow">✦ Personalised ✦</span>
+        <h2 class="sec-title custom-title">Your imagination.<br/><em>Our craftsmanship.</em></h2>
+        <p class="custom-body">Want your name in a necklace? A design that matches your wedding outfit? A gift for your best friend that no one else has? We do all of that — and more.</p>
+        <ul class="custom-list">
           <li>✦ Name / Initial jewellery</li>
-          <li>✦ Bridal & gifting sets</li>
+          <li>✦ Bridal &amp; gifting sets</li>
           <li>✦ Colour-matched pieces (send us your outfit!)</li>
-          <li>✦ Bulk orders for events & corporates</li>
+          <li>✦ Bulk orders for events &amp; corporates</li>
           <li>✦ Recreate a design you love</li>
         </ul>
-        <div class="custom__ctas">
-          <a href="https://wa.me/919999999999?text=Hi%20Praju!%20I%20want%20to%20place%20a%20custom%20order.%20Here%27s%20my%20idea:%20" target="_blank" rel="noopener" class="btn btn--gold">Start Custom Order on WhatsApp</a>
-          <p class="custom__note">Typical turnaround: 3–5 days • Starts at ₹299</p>
-        </div>
+        <a href="https://wa.me/919999999999?text=Hi%20Praju!%20I%20want%20a%20custom%20order%20%F0%9F%92%9B" target="_blank" class="btn btn-gold">Start Custom Order on WhatsApp</a>
+        <p class="custom-note" style="margin-top:.75rem">Typical turnaround: 3–5 days • Starts at ₹299</p>
       </div>
-      <div class="custom__form-card reveal-up" style="--d:0.2s">
-        <h3 class="custom__form-title">Quick Enquiry</h3>
-        <p class="custom__form-sub">We'll reply within 2 hours on WhatsApp</p>
-        <form class="custom__form" id="customForm" novalidate>
-          <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" name="name" placeholder="e.g. Sneha" required />
-          </div>
-          <div class="form-group">
-            <label>WhatsApp Number</label>
-            <input type="tel" name="phone" placeholder="+91 98765 43210" required />
-          </div>
-          <div class="form-group">
-            <label>Type of Piece</label>
-            <select name="type">
-              <option value="">Select category…</option>
-              <option>Earrings</option>
-              <option>Necklace</option>
-              <option>Bracelet</option>
-              <option>Ring</option>
-              <option>Full Set</option>
-              <option>Other</option>
+      <div class="form-card">
+        <h3>Quick Enquiry</h3>
+        <p>We'll reply within 2 hours on WhatsApp</p>
+        <form onsubmit="submitForm(event)">
+          <div class="fg"><label>Your Name</label><input type="text" id="fname" placeholder="e.g. Sneha" required /></div>
+          <div class="fg"><label>WhatsApp Number</label><input type="tel" id="fphone" placeholder="+91 98765 43210" required /></div>
+          <div class="fg"><label>Type of Piece</label>
+            <select id="ftype">
+              <option value="">Select…</option>
+              <option>Earrings</option><option>Necklace</option>
+              <option>Bracelet</option><option>Ring</option>
+              <option>Full Set</option><option>Other</option>
             </select>
           </div>
-          <div class="form-group">
-            <label>Describe your idea</label>
-            <textarea name="idea" rows="3" placeholder="e.g. I want gold hoops with small pearl drops, for my best friend's birthday…"></textarea>
-          </div>
-          <div class="form-group">
+          <div class="fg"><label>Describe your idea</label><textarea id="fidea" rows="3" placeholder="e.g. Gold hoops with pearl drops for my best friend's birthday…"></textarea></div>
+          <div class="fg">
             <label>Budget (₹)</label>
-            <input type="range" name="budget" min="299" max="5000" value="999" id="budgetSlider" />
-            <div class="budget-display">Up to ₹<span id="budgetVal">999</span></div>
+            <input type="range" id="fbudget" min="299" max="5000" value="999" oninput="document.getElementById('fbudgetval').textContent=parseInt(this.value).toLocaleString('en-IN')"/>
+            <div class="budget-val">Up to ₹<span id="fbudgetval">999</span></div>
           </div>
-          <button type="submit" class="btn btn--gold btn--full">Send via WhatsApp ✦</button>
+          <button type="submit" class="btn btn-gold btn-full">Send via WhatsApp ✦</button>
         </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════════════ REVIEWS ══ -->
-  <section class="reviews" id="reviews">
-    <div class="container">
-      <div class="section-header reveal-up">
-        <p class="section-eyebrow">✦ Love Notes ✦</p>
-        <h2 class="section-title">What our girls say</h2>
-      </div>
-      <div class="reviews__track" id="reviewsTrack">
-        <!-- Reviews injected by JS -->
-      </div>
-      <div class="reviews__dots" id="reviewsDots"></div>
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:2.5rem">
+      <span class="sec-eyebrow">✦ Love Notes ✦</span>
+      <h2 class="sec-title">What our girls say</h2>
     </div>
-  </section>
+    <div class="reviews-track">
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Absolutely obsessed with my pearl earrings! They look exactly like the photo and the quality is insane for the price. Will definitely order again!"</p><div class="rev-foot"><div class="rev-avatar">S</div><div><div class="rev-name">Sneha P., Pune</div><div class="rev-meta">Pearl Cascade Earrings</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Got a custom name necklace as a birthday gift for my bestie — she literally cried! Praju is so talented and delivered in just 3 days. 10/10!"</p><div class="rev-foot"><div class="rev-avatar">A</div><div><div class="rev-name">Aishwarya R., Mumbai</div><div class="rev-meta">Custom Name Necklace</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"I've ordered from so many places but the finish on these jhumkas is unmatched. Super lightweight and didn't cause any irritation. So beautiful!"</p><div class="rev-foot"><div class="rev-avatar">P</div><div><div class="rev-name">Priya K., Nagpur</div><div class="rev-meta">Oxidised Jhumkas</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"The packaging was so aesthetic I didn't want to open it! The bracelet is delicate but sturdy. Already got 3 compliments today. Praju is queen!"</p><div class="rev-foot"><div class="rev-avatar">R</div><div><div class="rev-name">Riya M., Nashik</div><div class="rev-meta">Beaded Charm Bracelet</div></div></div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Communication was so smooth on WhatsApp! Got my custom piece approved before she even made it. Super professional and the result is stunning!"</p><div class="rev-foot"><div class="rev-avatar">M</div><div><div class="rev-name">Meghna D., Aurangabad</div><div class="rev-meta">Custom Earrings</div></div></div></div>
+    </div>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════════════ INSTAGRAM ══ -->
-  <section class="insta">
-    <div class="insta__header reveal-up">
-      <p class="section-eyebrow">✦ @praju.jewellery ✦</p>
-      <h2 class="section-title">As seen on Instagram</h2>
-      <a href="https://instagram.com/praju.jewellery" target="_blank" rel="noopener" class="btn btn--outline">Follow for Daily Drops</a>
+<!-- INSTAGRAM -->
+<section class="insta">
+  <div class="container">
+    <div class="insta-header">
+      <span class="sec-eyebrow">✦ @praju.jewellery ✦</span>
+      <h2 class="sec-title">As seen on Instagram</h2>
+      <a href="https://instagram.com/praju.jewellery" target="_blank" class="btn btn-outline">Follow for Daily Drops</a>
     </div>
-    <div class="insta__grid" id="instaGrid">
-      <!-- Injected by JS -->
+    <div class="insta-grid">
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">💛</div><div class="insta-overlay">Shop Now</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">✨</div><div class="insta-overlay">New Drop</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">🌸</div><div class="insta-overlay">GRWM</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">💍</div><div class="insta-overlay">Custom</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">🤍</div><div class="insta-overlay">Pearls</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">⭕</div><div class="insta-overlay">Hoops</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">🌺</div><div class="insta-overlay">Ethnic</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">📿</div><div class="insta-overlay">Layers</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">👑</div><div class="insta-overlay">Premium</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">🎁</div><div class="insta-overlay">Gifts</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">💎</div><div class="insta-overlay">Stones</div></div>
+      <div class="insta-item" onclick="window.open('https://instagram.com/praju.jewellery','_blank')"><div class="insta-item-inner">🌿</div><div class="insta-overlay">Minimal</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════════════ CONTACT ══ -->
-  <section class="contact" id="contact">
-    <div class="container contact__inner">
-      <div class="contact__left reveal-left">
-        <p class="section-eyebrow">✦ Reach Us ✦</p>
-        <h2 class="section-title contact__title">Let's talk<br/><em>jewellery</em></h2>
-        <p class="contact__body">Whether you have a question about an order, want to collaborate, or just want to say hi — we love hearing from you. Our typical response time is under 2 hours.</p>
-        <div class="contact__methods">
-          <a href="https://wa.me/919999999999" target="_blank" rel="noopener" class="contact__method contact__method--whatsapp">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            <div>
-              <strong>WhatsApp</strong>
-              <span>+91 99999 99999</span>
-            </div>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <span class="sec-eyebrow">✦ Reach Us ✦</span>
+        <h2 class="sec-title">Let's talk<br/><em>jewellery</em></h2>
+        <p class="contact-body">Whether you have a question about an order, want to collaborate, or just want to say hi — we love hearing from you. Our typical response time is under 2 hours.</p>
+        <div class="contact-methods">
+          <a href="https://wa.me/919999999999" target="_blank" class="cmethod cmethod-wa">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <div><strong>WhatsApp</strong><span>+91 99999 99999</span></div>
           </a>
-          <a href="https://instagram.com/praju.jewellery" target="_blank" rel="noopener" class="contact__method contact__method--instagram">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            <div>
-              <strong>Instagram</strong>
-              <span>@praju.jewellery</span>
-            </div>
+          <a href="https://instagram.com/praju.jewellery" target="_blank" class="cmethod cmethod-ig">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <div><strong>Instagram</strong><span>@praju.jewellery</span></div>
           </a>
-          <div class="contact__method">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <div>
-              <strong>Location</strong>
-              <span>Pune, Maharashtra, India</span>
-            </div>
+          <div class="cmethod">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div><strong>Location</strong><span>Pune, Maharashtra, India</span></div>
           </div>
         </div>
       </div>
-      <div class="contact__map reveal-right">
-        <div class="contact__hours-card">
+      <div>
+        <div class="hours-card">
           <h3>Business Hours</h3>
-          <div class="hours-row"><span>Monday – Saturday</span><span class="hours-time">10 AM – 8 PM</span></div>
-          <div class="hours-row"><span>Sunday</span><span class="hours-time">12 PM – 6 PM</span></div>
-          <div class="hours-row hours-row--note"><span>WhatsApp replies within</span><span class="hours-time">2 hours</span></div>
-          <div class="contact__guarantee">
-            <span class="guarantee-icon">🔒</span>
-            <p>Secure payments via Razorpay · UPI · COD</p>
-          </div>
+          <div class="hrow"><span>Monday – Saturday</span><span class="htime">10 AM – 8 PM</span></div>
+          <div class="hrow"><span>Sunday</span><span class="htime">12 PM – 6 PM</span></div>
+          <div class="hrow"><span>WhatsApp replies within</span><span class="htime">2 hours</span></div>
+          <div class="guarantee"><span>🔒</span><p>Secure payments via Razorpay · UPI · COD</p></div>
         </div>
-        <div class="contact__badges">
-          <div class="badge-pill">🚚 Free shipping on ₹599+</div>
-          <div class="badge-pill">✦ 100% handmade</div>
-          <div class="badge-pill">🔄 Easy 7-day returns</div>
-          <div class="badge-pill">🎁 Gift wrapping available</div>
+        <div class="badges">
+          <div class="badge">🚚 Free shipping ₹599+</div>
+          <div class="badge">✦ 100% handmade</div>
+          <div class="badge">🔄 7-day returns</div>
+          <div class="badge">🎁 Gift wrapping</div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ═══════════════════════════════════════ FOOTER ═══ -->
-  <footer class="footer">
-    <div class="footer__top">
-      <div class="container footer__grid">
-        <div class="footer__brand">
-          <div class="footer__logo">✦ Praju</div>
-          <p class="footer__tagline">Handcrafted jewellery for India's fashion-forward souls.</p>
-          <p class="footer__marathi">हस्तनिर्मित दागिने, प्रेमाने घडवलेले.</p>
-          <div class="footer__social">
-            <a href="https://instagram.com/praju.jewellery" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </a>
-            <a href="https://wa.me/919999999999" target="_blank" rel="noopener" aria-label="WhatsApp">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            </a>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">✦ Praju</div>
+          <p class="footer-tag">Handcrafted jewellery for India's fashion-forward souls.</p>
+          <p class="footer-mr">हस्तनिर्मित दागिने, प्रेमाने घडवलेले.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com/praju.jewellery" target="_blank" aria-label="Instagram">📷</a>
+            <a href="https://wa.me/919999999999" target="_blank" aria-label="WhatsApp">💬</a>
           </div>
         </div>
-        <div class="footer__links">
+        <div class="footer-col">
           <h4>Quick Links</h4>
           <ul>
             <li><a href="#collections">Collections</a></li>
@@ -448,16 +705,16 @@
             <li><a href="#reviews">Reviews</a></li>
           </ul>
         </div>
-        <div class="footer__links">
+        <div class="footer-col">
           <h4>Categories</h4>
           <ul>
-            <li><a href="#" onclick="filterProducts('earrings')">Earrings</a></li>
-            <li><a href="#" onclick="filterProducts('necklace')">Necklaces</a></li>
-            <li><a href="#" onclick="filterProducts('bracelet')">Bracelets</a></li>
-            <li><a href="#" onclick="filterProducts('custom')">Custom Pieces</a></li>
+            <li><a href="#collections">Earrings</a></li>
+            <li><a href="#collections">Necklaces</a></li>
+            <li><a href="#collections">Bracelets</a></li>
+            <li><a href="#collections">Custom Pieces</a></li>
           </ul>
         </div>
-        <div class="footer__links">
+        <div class="footer-col">
           <h4>Policies</h4>
           <ul>
             <li><a href="#contact">Shipping Info</a></li>
@@ -468,53 +725,173 @@
         </div>
       </div>
     </div>
-    <div class="footer__bottom">
-      <div class="container footer__bottom-inner">
-        <p>© 2025 Handcrafted Jewellery by Praju. All rights reserved.</p>
-        <p>Made with 💛 in Pune, India</p>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="footer-bottom-inner">
+        <span>© 2025 Handcrafted Jewellery by Praju. All rights reserved.</span>
+        <span>Made with 💛 in Pune, India</span>
       </div>
-    </div>
-  </footer>
-
-  <!-- ═══════════════════════════════════════ FLOATERS ══ -->
-  <!-- WhatsApp FAB -->
-  <a href="https://wa.me/919999999999?text=Hi%20Praju!%20I%20saw%20your%20website%20and%20would%20love%20to%20know%20more%20about%20your%20jewellery%20%F0%9F%92%9B" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat on WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    <span class="whatsapp-fab__label">Chat with us</span>
-  </a>
-
-  <!-- Cart Sidebar -->
-  <div class="cart-overlay" id="cartOverlay"></div>
-  <div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-sidebar__header">
-      <h3>Your Cart</h3>
-      <button class="cart-sidebar__close" id="cartClose">✕</button>
-    </div>
-    <div class="cart-sidebar__items" id="cartItems">
-      <div class="cart-empty">
-        <span>🛒</span>
-        <p>Your cart is empty</p>
-        <a href="#collections" class="btn btn--outline">Browse Collection</a>
-      </div>
-    </div>
-    <div class="cart-sidebar__footer" id="cartFooter" style="display:none">
-      <div class="cart-total">
-        <span>Total</span>
-        <span id="cartTotal">₹0</span>
-      </div>
-      <a href="https://wa.me/919999999999" target="_blank" rel="noopener" class="btn btn--gold btn--full" id="whatsappCheckout">
-        Order via WhatsApp ✦
-      </a>
-      <p class="cart-note">We'll confirm your order and share payment details on WhatsApp</p>
     </div>
   </div>
+</footer>
 
-  <!-- Toast -->
-  <div class="toast" id="toast">
-    <span class="toast__icon">✦</span>
-    <span class="toast__msg" id="toastMsg"></span>
+<!-- WA FAB -->
+<a href="https://wa.me/919999999999?text=Hi%20Praju!%20I%20saw%20your%20website%20%F0%9F%92%9B" target="_blank" class="wa-fab">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  <span>Chat with us</span>
+</a>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-head">
+    <h3>Your Cart 🛒</h3>
+    <span class="cart-close" onclick="closeCart()">✕</span>
   </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-total-row"><span>Total</span><span id="cartTotal">₹0</span></div>
+    <a id="waCheckout" href="#" target="_blank" class="btn btn-wa btn-full">Order via WhatsApp ✦</a>
+    <p class="cart-note">We'll confirm your order and share payment details on WhatsApp</p>
+  </div>
+</div>
 
-  <script src="js/app.js"></script>
+<!-- TOAST -->
+<div class="toast" id="toast"><span>✦</span><span id="toastMsg"></span></div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────
+const PRODUCTS=[
+  {id:1,name:'Pearl Cascade Earrings',cat:'earrings',price:449,cmp:649,mat:'Gold-plated brass, freshwater pearls',emoji:'🤍',badge:'Bestseller',badgeCls:''},
+  {id:2,name:'Twisted Hoop Set',cat:'earrings',price:349,cmp:499,mat:'Anti-tarnish silver alloy',emoji:'⭕',badge:'New',badgeCls:'badge-new'},
+  {id:3,name:'Boho Layered Necklace',cat:'necklace',price:699,cmp:999,mat:'Gold-plated brass, semi-precious stones',emoji:'📿',badge:'Trending',badgeCls:''},
+  {id:4,name:'Delicate Chain Bracelet',cat:'bracelet',price:299,cmp:449,mat:'Sterling silver-tone, adjustable',emoji:'✨',badge:'New',badgeCls:'badge-new'},
+  {id:5,name:'Oxidised Jhumka Earrings',cat:'earrings',price:399,cmp:599,mat:'Oxidised brass with beadwork',emoji:'🌺',badge:'',badgeCls:''},
+  {id:6,name:'Name Initial Necklace',cat:'custom',price:599,cmp:null,mat:'Gold / Silver — custom made',emoji:'💌',badge:'Custom',badgeCls:''},
+  {id:7,name:'Kundan Choker Set',cat:'necklace',price:1299,cmp:1799,mat:'Kundan stones, antique gold finish',emoji:'👑',badge:'Premium',badgeCls:''},
+  {id:8,name:'Beaded Charm Bracelet',cat:'bracelet',price:249,cmp:349,mat:'Semi-precious stone beads',emoji:'🔮',badge:'New',badgeCls:'badge-new'},
+];
+
+// ── CART ──────────────────────────────────────────────────────────────
+let cart=JSON.parse(localStorage.getItem('praju_cart')||'[]');
+const fmt=n=>'₹'+n.toLocaleString('en-IN');
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+function saveCart(){localStorage.setItem('praju_cart',JSON.stringify(cart))}
+
+function updateCartUI(){
+  const count=cart.reduce((a,i)=>a+i.qty,0);
+  const total=cart.reduce((a,i)=>a+i.price*i.qty,0);
+  const el=document.getElementById('cartCount');
+  el.textContent=count;
+  el.className=count>0?'show':'';
+
+  const items=document.getElementById('cartItems');
+  const foot=document.getElementById('cartFoot');
+  if(!cart.length){
+    items.innerHTML='<div class="cart-empty-msg"><span>🛒</span><p>Your cart is empty</p><a href="#collections" class="btn btn-outline" onclick="closeCart()">Browse Collection</a></div>';
+    foot.style.display='none';return;
+  }
+  foot.style.display='block';
+  document.getElementById('cartTotal').textContent=fmt(total);
+  items.innerHTML=cart.map(i=>`
+    <div class="cart-item-row">
+      <div class="ci-img">${i.emoji}</div>
+      <div><div class="ci-name">${i.name}</div>
+      <div class="ci-price">${fmt(i.price)} × ${i.qty}</div>
+      <span class="ci-remove" onclick="removeItem(${i.id})">Remove ✕</span></div>
+    </div>`).join('');
+  const msg=encodeURIComponent('Hi Praju! 🛍️ I\'d like to order:\n\n'+
+    cart.map(i=>`• ${i.name} × ${i.qty} = ${fmt(i.price*i.qty)}`).join('\n')+
+    `\n\n*Total: ${fmt(total)}*\n\nPlease share payment details!`);
+  document.getElementById('waCheckout').href=`https://wa.me/919999999999?text=${msg}`;
+}
+
+function addToCart(id){
+  const p=PRODUCTS.find(x=>x.id===id);if(!p)return;
+  const ex=cart.find(i=>i.id===id);
+  if(ex)ex.qty++;else cart.push({id:p.id,name:p.name,price:p.price,emoji:p.emoji,qty:1});
+  saveCart();updateCartUI();toast(p.name+' added to cart ✦');openCart();
+}
+
+function removeItem(id){
+  cart=cart.filter(i=>i.id!==id);saveCart();updateCartUI();
+}
+
+function openCart(){
+  document.getElementById('cartSidebar').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+}
+function closeCart(){
+  document.getElementById('cartSidebar').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+// ── PRODUCTS ──────────────────────────────────────────────────────────
+function renderProducts(list){
+  const g=document.getElementById('productGrid');
+  if(!list.length){g.innerHTML='<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:3rem">No products found.</p>';return;}
+  g.innerHTML=list.map(p=>`
+    <div class="card">
+      <div class="card-img">
+        ${p.emoji}
+        ${p.badge?`<span class="card-badge ${p.badgeCls}">${p.badge}</span>`:''}
+      </div>
+      <div class="card-body">
+        <div class="card-cat">${p.cat}</div>
+        <div class="card-name">${p.name}</div>
+        <div class="card-mat">${p.mat}</div>
+        <div class="card-footer">
+          <div>
+            <span class="card-price">${fmt(p.price)}</span>
+            ${p.cmp?`<span class="card-compare">${fmt(p.cmp)}</span>`:''}
+          </div>
+          <button class="add-btn" onclick="addToCart(${p.id})">Add +</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function filterP(btn,cat){
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts(cat==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===cat));
+}
+
+// ── FORM ──────────────────────────────────────────────────────────────
+function submitForm(e){
+  e.preventDefault();
+  const name=document.getElementById('fname').value;
+  const phone=document.getElementById('fphone').value;
+  if(!name||!phone){toast('Please enter your name and phone number');return;}
+  const type=document.getElementById('ftype').value;
+  const idea=document.getElementById('fidea').value;
+  const budget=document.getElementById('fbudget').value;
+  const msg=encodeURIComponent(`Hi Praju! 💛 Custom order request!\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Type:* ${type||'Not specified'}\n*Idea:* ${idea||'Will share on chat'}\n*Budget:* Up to ₹${parseInt(budget).toLocaleString('en-IN')}`);
+  window.open(`https://wa.me/919999999999?text=${msg}`,'_blank');
+  toast('Opening WhatsApp ✦');
+  e.target.reset();
+  document.getElementById('fbudgetval').textContent='999';
+}
+
+// ── NAV ───────────────────────────────────────────────────────────────
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────
+renderProducts(PRODUCTS);
+updateCartUI();
+</script>
 </body>
 </html>
