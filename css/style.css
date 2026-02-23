@@ -194,12 +194,12 @@ body:has(a:hover) .cursor-follower, body:has(button:hover) .cursor-follower { wi
 
 /* ─── REVEAL ANIMATIONS ───────────────────────────────────────── */
 .reveal-up, .reveal-left, .reveal-right {
-  opacity: 0; transform: translateY(40px);
+  opacity: 1; transform: none;
   transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--d, 0s),
               transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) var(--d, 0s);
 }
-.reveal-left { transform: translateX(-40px); }
-.reveal-right { transform: translateX(40px); }
+.reveal-left { transform: none; }
+.reveal-right { transform: none; }
 .revealed { opacity: 1 !important; transform: none !important; }
 
 /* ─── BUTTONS ─────────────────────────────────────────────────── */
