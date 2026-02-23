@@ -70,12 +70,14 @@ function saveCart() {
 /* ═══════════════════════════════════════════════════════════════
    LOADER
    ═══════════════════════════════════════════════════════════════ */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    $('#loader').classList.add('hide');
-  }, 1200);
-});
+// Hide loader after max 1.5s regardless of font loading
+setTimeout(() => {
+  $('#loader').classList.add('hide');
+}, 1500);
 
+window.addEventListener('load', () => {
+  $('#loader').classList.add('hide');
+});
 /* ═══════════════════════════════════════════════════════════════
    CUSTOM CURSOR
    ═══════════════════════════════════════════════════════════════ */
