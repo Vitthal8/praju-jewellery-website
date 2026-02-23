@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Handcrafted Jewellery by Praju — Artisan earrings, necklaces, bracelets & custom pieces. Trendy, affordable, made with love in India." />
+  <meta name="keywords" content="handcrafted jewellery, earrings India, necklaces, custom jewellery, artisan jewellery, Praju" />
+  <meta property="og:title" content="Handcrafted Jewellery by Praju" />
+  <meta property="og:description" content="Artisan jewellery for the fashion-forward soul. Shop earrings, necklaces, bracelets & custom pieces." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/og-cover.jpg" />
+  <title>Handcrafted Jewellery by Praju ✦</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💛</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400;600&family=Noto+Sans+Devanagari:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════ LOADER ══ -->
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <div class="loader__symbol">✦</div>
+      <p class="loader__text">Handcrafted Jewellery by Praju</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ CURSOR ══ -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ═══════════════════════════════════════ NAV ══════ -->
+  <nav class="nav" id="nav">
+    <div class="nav__logo">
+      <span class="nav__logo-mark">✦</span>
+      <span class="nav__logo-text">Praju</span>
+    </div>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#collections" class="nav__link">Collections</a></li>
+      <li><a href="#story" class="nav__link">Our Story</a></li>
+      <li><a href="#custom" class="nav__link">Custom</a></li>
+      <li><a href="#reviews" class="nav__link">Reviews</a></li>
+      <li><a href="#contact" class="nav__link">Contact</a></li>
+    </ul>
+    <div class="nav__actions">
+      <button class="nav__search" aria-label="Search" id="searchToggle">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="nav__cart" id="cartToggle" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="nav__cart-count" id="cartCount">0</span>
+      </button>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Search overlay -->
+  <div class="search-overlay" id="searchOverlay">
+    <button class="search-overlay__close" id="searchClose">✕</button>
+    <div class="search-overlay__inner">
+      <p class="search-overlay__hint">What are you looking for?</p>
+      <input type="text" class="search-overlay__input" placeholder="Try 'gold earrings', 'bridal necklace'…" id="searchInput" />
+      <div class="search-overlay__tags">
+        <button class="tag" onclick="filterProducts('earrings')">Earrings</button>
+        <button class="tag" onclick="filterProducts('necklace')">Necklaces</button>
+        <button class="tag" onclick="filterProducts('bracelet')">Bracelets</button>
+        <button class="tag" onclick="filterProducts('custom')">Custom</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ HERO ═════ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+      <div class="hero__grain"></div>
+    </div>
+    <div class="hero__content">
+      <p class="hero__eyebrow reveal-up" style="--d:0.1s">✦ Handcrafted with love, worn with pride ✦</p>
+      <h1 class="hero__title reveal-up" style="--d:0.25s">
+        <span class="hero__title-line">Jewellery that</span>
+        <span class="hero__title-line hero__title-line--italic">tells your</span>
+        <span class="hero__title-line">story</span>
+      </h1>
+      <p class="hero__subtitle reveal-up" style="--d:0.45s">Artisan earrings, necklaces &amp; custom pieces<br/>crafted for India's fashion-forward souls</p>
+      <div class="hero__ctas reveal-up" style="--d:0.6s">
+        <a href="#collections" class="btn btn--gold">Shop Collection</a>
+        <a href="#custom" class="btn btn--ghost">Custom Order ✦</a>
+      </div>
+      <div class="hero__marathi reveal-up" style="--d:0.75s">
+        <span>हस्तनिर्मित दागिने</span>
+      </div>
+    </div>
+    <div class="hero__scroll-indicator">
+      <div class="hero__scroll-line"></div>
+      <span>scroll</span>
+    </div>
+    <!-- Floating jewellery cards -->
+    <div class="hero__float hero__float--1">
+      <div class="float-card">
+        <div class="float-card__dot float-card__dot--gold"></div>
+        <span>New Drop ✨</span>
+      </div>
+    </div>
+    <div class="hero__float hero__float--2">
+      <div class="float-card">
+        <div class="float-card__dot float-card__dot--rose"></div>
+        <span>Custom Orders Open</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ MARQUEE ══ -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>HANDCRAFTED</span><span class="marquee-dot">✦</span>
+      <span>ARTISAN JEWELLERY</span><span class="marquee-dot">✦</span>
+      <span>MADE IN INDIA</span><span class="marquee-dot">✦</span>
+      <span>BY PRAJU</span><span class="marquee-dot">✦</span>
+      <span>CUSTOM ORDERS</span><span class="marquee-dot">✦</span>
+      <span>FAST DELIVERY</span><span class="marquee-dot">✦</span>
+      <span>HANDCRAFTED</span><span class="marquee-dot">✦</span>
+      <span>ARTISAN JEWELLERY</span><span class="marquee-dot">✦</span>
+      <span>MADE IN INDIA</span><span class="marquee-dot">✦</span>
+      <span>BY PRAJU</span><span class="marquee-dot">✦</span>
+      <span>CUSTOM ORDERS</span><span class="marquee-dot">✦</span>
+      <span>FAST DELIVERY</span><span class="marquee-dot">✦</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ STATS ════ -->
+  <section class="stats">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stat-card reveal-up" style="--d:0s">
+          <span class="stat-card__num" data-count="500">0</span><span class="stat-card__suffix">+</span>
+          <p class="stat-card__label">Happy Customers</p>
+        </div>
+        <div class="stat-card reveal-up" style="--d:0.1s">
+          <span class="stat-card__num" data-count="120">0</span><span class="stat-card__suffix">+</span>
+          <p class="stat-card__label">Unique Designs</p>
+        </div>
+        <div class="stat-card reveal-up" style="--d:0.2s">
+          <span class="stat-card__num" data-count="100">0</span><span class="stat-card__suffix">%</span>
+          <p class="stat-card__label">Handcrafted</p>
+        </div>
+        <div class="stat-card reveal-up" style="--d:0.3s">
+          <span class="stat-card__num" data-count="48">0</span><span class="stat-card__suffix">h</span>
+          <p class="stat-card__label">Custom Delivery</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ COLLECTIONS ══ -->
+  <section class="collections" id="collections">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <p class="section-eyebrow">✦ Explore ✦</p>
+        <h2 class="section-title">Our Collections</h2>
+        <p class="section-sub">From everyday elegance to statement pieces — discover jewellery that speaks your language</p>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="filter-tabs reveal-up" style="--d:0.2s">
+        <button class="filter-tab filter-tab--active" data-filter="all">All</button>
+        <button class="filter-tab" data-filter="earrings">Earrings</button>
+        <button class="filter-tab" data-filter="necklace">Necklaces</button>
+        <button class="filter-tab" data-filter="bracelet">Bracelets</button>
+        <button class="filter-tab" data-filter="custom">Custom</button>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Products injected by JS -->
+      </div>
+
+      <div class="collections__more reveal-up" style="--d:0.3s">
+        <a href="#contact" class="btn btn--outline">See All on WhatsApp ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ STORY ════ -->
+  <section class="story" id="story">
+    <div class="story__bg">
+      <div class="story__orb"></div>
+    </div>
+    <div class="container story__grid">
+      <div class="story__visual reveal-left">
+        <div class="story__img-frame">
+          <div class="story__img-placeholder">
+            <div class="story__img-inner">
+              <p class="story__img-quote">"Every piece is a conversation between<br/>the maker and the wearer."</p>
+              <span class="story__img-mark">— Praju</span>
+            </div>
+          </div>
+          <div class="story__img-badge">
+            <svg viewBox="0 0 100 100" class="story__badge-svg">
+              <path id="circlePath" fill="none" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"/>
+              <text class="story__badge-text">
+                <textPath href="#circlePath">HANDCRAFTED WITH LOVE • PRAJU • MADE IN INDIA •</textPath>
+              </text>
+            </svg>
+            <span class="story__badge-center">✦</span>
+          </div>
+        </div>
+      </div>
+      <div class="story__content reveal-right">
+        <p class="section-eyebrow">✦ Our Story ✦</p>
+        <h2 class="section-title story__title">Born from<br/><em>passion for craft</em></h2>
+        <p class="story__body">What started as a hobby — bending wire, stringing beads, hunting for the perfect stone — became something much bigger. Every earring, every necklace is a tiny universe crafted by hand, made for someone who believes jewellery is more than decoration.</p>
+        <p class="story__body">Praju jewellery is for the girl who notices details. The one who builds her look from the earring out. We make pieces that become part of your story.</p>
+        <div class="story__pillars">
+          <div class="story__pillar">
+            <span class="story__pillar-icon">🤲</span>
+            <div>
+              <strong>Made by Hand</strong>
+              <p>Every piece crafted individually — no machines, no mass production</p>
+            </div>
+          </div>
+          <div class="story__pillar">
+            <span class="story__pillar-icon">🌿</span>
+            <div>
+              <strong>Conscious Materials</strong>
+              <p>Skin-safe alloys, anti-tarnish coating, responsibly sourced stones</p>
+            </div>
+          </div>
+          <div class="story__pillar">
+            <span class="story__pillar-icon">💛</span>
+            <div>
+              <strong>Made in India</strong>
+              <p>Rooted in Indian craft tradition, designed for today's aesthetic</p>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn--gold story__cta">Chat with Praju ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ PROCESS ══ -->
+  <section class="process">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <p class="section-eyebrow">✦ The Craft ✦</p>
+        <h2 class="section-title">From idea to your hands</h2>
+      </div>
+      <div class="process__steps">
+        <div class="process__step reveal-up" style="--d:0s">
+          <div class="process__step-num">01</div>
+          <div class="process__step-icon">💭</div>
+          <h3>You share your vision</h3>
+          <p>Send us a reference image, describe the feeling, or browse our lookbook for inspo</p>
+        </div>
+        <div class="process__connector reveal-up" style="--d:0.1s">→</div>
+        <div class="process__step reveal-up" style="--d:0.15s">
+          <div class="process__step-num">02</div>
+          <div class="process__step-icon">✏️</div>
+          <h3>Praju designs</h3>
+          <p>We sketch your piece, share a preview on WhatsApp for your approval before crafting</p>
+        </div>
+        <div class="process__connector reveal-up" style="--d:0.25s">→</div>
+        <div class="process__step reveal-up" style="--d:0.3s">
+          <div class="process__step-num">03</div>
+          <div class="process__step-icon">🔨</div>
+          <h3>Handcrafted for you</h3>
+          <p>Every bend, bead, and detail is placed by hand. Your piece is unique — no copies</p>
+        </div>
+        <div class="process__connector reveal-up" style="--d:0.4s">→</div>
+        <div class="process__step reveal-up" style="--d:0.45s">
+          <div class="process__step-num">04</div>
+          <div class="process__step-icon">📦</div>
+          <h3>Delivered with love</h3>
+          <p>Gift-wrapped, packed carefully, delivered to your door within 3–7 days</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ CUSTOM ═══ -->
+  <section class="custom" id="custom">
+    <div class="custom__bg">
+      <div class="custom__orb"></div>
+    </div>
+    <div class="container custom__inner">
+      <div class="custom__content reveal-up">
+        <p class="section-eyebrow custom__eyebrow">✦ Personalised ✦</p>
+        <h2 class="section-title custom__title">Your imagination.<br/><em>Our craftsmanship.</em></h2>
+        <p class="custom__body">Want your name in a necklace? A design that matches your wedding outfit? A gift for your best friend that no one else has? We do all of that — and more.</p>
+        <ul class="custom__list">
+          <li>✦ Name / Initial jewellery</li>
+          <li>✦ Bridal & gifting sets</li>
+          <li>✦ Colour-matched pieces (send us your outfit!)</li>
+          <li>✦ Bulk orders for events & corporates</li>
+          <li>✦ Recreate a design you love</li>
+        </ul>
+        <div class="custom__ctas">
+          <a href="https://wa.me/919999999999?text=Hi%20Praju!%20I%20want%20to%20place%20a%20custom%20order.%20Here%27s%20my%20idea:%20" target="_blank" rel="noopener" class="btn btn--gold">Start Custom Order on WhatsApp</a>
+          <p class="custom__note">Typical turnaround: 3–5 days • Starts at ₹299</p>
+        </div>
+      </div>
+      <div class="custom__form-card reveal-up" style="--d:0.2s">
+        <h3 class="custom__form-title">Quick Enquiry</h3>
+        <p class="custom__form-sub">We'll reply within 2 hours on WhatsApp</p>
+        <form class="custom__form" id="customForm" novalidate>
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="e.g. Sneha" required />
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Number</label>
+            <input type="tel" name="phone" placeholder="+91 98765 43210" required />
+          </div>
+          <div class="form-group">
+            <label>Type of Piece</label>
+            <select name="type">
+              <option value="">Select category…</option>
+              <option>Earrings</option>
+              <option>Necklace</option>
+              <option>Bracelet</option>
+              <option>Ring</option>
+              <option>Full Set</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Describe your idea</label>
+            <textarea name="idea" rows="3" placeholder="e.g. I want gold hoops with small pearl drops, for my best friend's birthday…"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Budget (₹)</label>
+            <input type="range" name="budget" min="299" max="5000" value="999" id="budgetSlider" />
+            <div class="budget-display">Up to ₹<span id="budgetVal">999</span></div>
+          </div>
+          <button type="submit" class="btn btn--gold btn--full">Send via WhatsApp ✦</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ REVIEWS ══ -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <p class="section-eyebrow">✦ Love Notes ✦</p>
+        <h2 class="section-title">What our girls say</h2>
+      </div>
+      <div class="reviews__track" id="reviewsTrack">
+        <!-- Reviews injected by JS -->
+      </div>
+      <div class="reviews__dots" id="reviewsDots"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ INSTAGRAM ══ -->
+  <section class="insta">
+    <div class="insta__header reveal-up">
+      <p class="section-eyebrow">✦ @praju.jewellery ✦</p>
+      <h2 class="section-title">As seen on Instagram</h2>
+      <a href="https://instagram.com/praju.jewellery" target="_blank" rel="noopener" class="btn btn--outline">Follow for Daily Drops</a>
+    </div>
+    <div class="insta__grid" id="instaGrid">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ CONTACT ══ -->
+  <section class="contact" id="contact">
+    <div class="container contact__inner">
+      <div class="contact__left reveal-left">
+        <p class="section-eyebrow">✦ Reach Us ✦</p>
+        <h2 class="section-title contact__title">Let's talk<br/><em>jewellery</em></h2>
+        <p class="contact__body">Whether you have a question about an order, want to collaborate, or just want to say hi — we love hearing from you. Our typical response time is under 2 hours.</p>
+        <div class="contact__methods">
+          <a href="https://wa.me/919999999999" target="_blank" rel="noopener" class="contact__method contact__method--whatsapp">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <div>
+              <strong>WhatsApp</strong>
+              <span>+91 99999 99999</span>
+            </div>
+          </a>
+          <a href="https://instagram.com/praju.jewellery" target="_blank" rel="noopener" class="contact__method contact__method--instagram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <div>
+              <strong>Instagram</strong>
+              <span>@praju.jewellery</span>
+            </div>
+          </a>
+          <div class="contact__method">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <strong>Location</strong>
+              <span>Pune, Maharashtra, India</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact__map reveal-right">
+        <div class="contact__hours-card">
+          <h3>Business Hours</h3>
+          <div class="hours-row"><span>Monday – Saturday</span><span class="hours-time">10 AM – 8 PM</span></div>
+          <div class="hours-row"><span>Sunday</span><span class="hours-time">12 PM – 6 PM</span></div>
+          <div class="hours-row hours-row--note"><span>WhatsApp replies within</span><span class="hours-time">2 hours</span></div>
+          <div class="contact__guarantee">
+            <span class="guarantee-icon">🔒</span>
+            <p>Secure payments via Razorpay · UPI · COD</p>
+          </div>
+        </div>
+        <div class="contact__badges">
+          <div class="badge-pill">🚚 Free shipping on ₹599+</div>
+          <div class="badge-pill">✦ 100% handmade</div>
+          <div class="badge-pill">🔄 Easy 7-day returns</div>
+          <div class="badge-pill">🎁 Gift wrapping available</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">✦ Praju</div>
+          <p class="footer__tagline">Handcrafted jewellery for India's fashion-forward souls.</p>
+          <p class="footer__marathi">हस्तनिर्मित दागिने, प्रेमाने घडवलेले.</p>
+          <div class="footer__social">
+            <a href="https://instagram.com/praju.jewellery" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://wa.me/919999999999" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer__links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#custom">Custom Orders</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h4>Categories</h4>
+          <ul>
+            <li><a href="#" onclick="filterProducts('earrings')">Earrings</a></li>
+            <li><a href="#" onclick="filterProducts('necklace')">Necklaces</a></li>
+            <li><a href="#" onclick="filterProducts('bracelet')">Bracelets</a></li>
+            <li><a href="#" onclick="filterProducts('custom')">Custom Pieces</a></li>
+          </ul>
+        </div>
+        <div class="footer__links">
+          <h4>Policies</h4>
+          <ul>
+            <li><a href="#contact">Shipping Info</a></li>
+            <li><a href="#contact">Return Policy</a></li>
+            <li><a href="#contact">Care Guide</a></li>
+            <li><a href="#contact">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>© 2025 Handcrafted Jewellery by Praju. All rights reserved.</p>
+        <p>Made with 💛 in Pune, India</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════ FLOATERS ══ -->
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/919999999999?text=Hi%20Praju!%20I%20saw%20your%20website%20and%20would%20love%20to%20know%20more%20about%20your%20jewellery%20%F0%9F%92%9B" target="_blank" rel="noopener" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <span class="whatsapp-fab__label">Chat with us</span>
+  </a>
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-sidebar__header">
+      <h3>Your Cart</h3>
+      <button class="cart-sidebar__close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-sidebar__items" id="cartItems">
+      <div class="cart-empty">
+        <span>🛒</span>
+        <p>Your cart is empty</p>
+        <a href="#collections" class="btn btn--outline">Browse Collection</a>
+      </div>
+    </div>
+    <div class="cart-sidebar__footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total</span>
+        <span id="cartTotal">₹0</span>
+      </div>
+      <a href="https://wa.me/919999999999" target="_blank" rel="noopener" class="btn btn--gold btn--full" id="whatsappCheckout">
+        Order via WhatsApp ✦
+      </a>
+      <p class="cart-note">We'll confirm your order and share payment details on WhatsApp</p>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <span class="toast__icon">✦</span>
+    <span class="toast__msg" id="toastMsg"></span>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
