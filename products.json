@@ -60,9 +60,22 @@
     "category": "custom",
     "price": 399,
     "comparePrice": null,
-    "material": "Your design, your choice — made just for you",
+    "material": "Your design, your choice â made just for you",
     "image": "images/gold-moon-nath.jpg",
     "badge": "Custom",
+    "inStock": true
+  },
+  {
+    "id": 1776330509131,
+    "name": "Earring",
+    "category": "mangalsutra",
+    "cat": "mangalsutra",
+    "price": 499,
+    "comparePrice": 699,
+    "material": "Earring",
+    "image": "images/ear1.jpg",
+    "img": "images/ear1.jpg",
+    "badge": "New",
     "inStock": true
   }
 ]
