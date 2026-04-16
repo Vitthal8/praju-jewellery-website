@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Praju Admin Panel ✦</title>
+<style>
+:root{
+  --gold:#C9A96E;--gold-d:#A07840;--gold-l:#F5E6C8;--gold-p:#FDF6EC;
+  --rose:#E8748A;--green:#22C55E;--red:#EF4444;--orange:#F59E0B;
+  --ink:#1A1208;--mid:#6B5744;--muted:#A8937E;
+  --cream:#FFF8F0;--white:#fff;--dark:#0F0A04;
+  --ff:'Georgia',serif;--ffs:'Segoe UI',Arial,sans-serif;
+  --r:10px;--rr:999px;--sh:0 4px 20px rgba(45,27,14,.1);--sh2:0 12px 40px rgba(45,27,14,.18);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:var(--ffs);background:#0F0A04;color:var(--cream);min-height:100vh}
+a{text-decoration:none;color:inherit}
+button{border:none;font-family:inherit;cursor:pointer}
+input,textarea,select{font-family:inherit}
+::selection{background:var(--gold-l);color:var(--ink)}
+
+/* ── LOGIN ── */
+#loginScreen{
+  position:fixed;inset:0;background:linear-gradient(135deg,#0F0A04 0%,#1A1208 60%,#2D1B0E 100%);
+  display:flex;align-items:center;justify-content:center;z-index:999;
+}
+.login-box{
+  background:rgba(255,248,240,.04);border:1px solid rgba(201,169,110,.2);
+  border-radius:20px;padding:3rem 2.5rem;width:100%;max-width:420px;
+  backdrop-filter:blur(20px);text-align:center;
+}
+.login-logo{font-family:var(--ff);font-size:2rem;color:var(--gold);margin-bottom:.5rem}
+.login-sub{font-size:.78rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2.5rem}
+.login-box h2{font-family:var(--ff);font-size:1.5rem;color:var(--gold-l);margin-bottom:.4rem}
+.login-box p{font-size:.82rem;color:var(--muted);margin-bottom:2rem}
+.login-field{margin-bottom:1.25rem;text-align:left}
+.login-field label{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.login-field input{
+  width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,169,110,.2);border-radius:var(--r);
+  color:var(--gold-l);font-size:.95rem;outline:none;
+  transition:border-color .2s;
+}
+.login-field input:focus{border-color:var(--gold)}
+.login-btn{
+  width:100%;padding:.9rem;background:var(--gold);color:var(--ink);
+  border-radius:var(--rr);font-size:.8rem;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:700;cursor:pointer;
+  transition:all .25s;margin-top:.5rem;
+}
+.login-btn:hover{background:var(--gold-d);color:#fff}
+.login-err{color:var(--rose);font-size:.78rem;margin-top:.75rem;display:none}
+.setup-hint{
+  margin-top:2rem;padding:1rem;background:rgba(201,169,110,.08);
+  border-radius:var(--r);border:1px solid rgba(201,169,110,.15);
+  font-size:.75rem;color:var(--muted);line-height:1.7;text-align:left;
+}
+.setup-hint strong{color:var(--gold);display:block;margin-bottom:.4rem}
+
+/* ── MAIN APP ── */
+#app{display:none}
+
+/* TOP BAR */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(15,10,4,.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(201,169,110,.12);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 1.5rem;
+}
+.tb-logo{font-family:var(--ff);font-size:1.3rem;color:var(--gold);display:flex;align-items:center;gap:.5rem}
+.tb-logo span{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-family:var(--ffs)}
+.tb-right{display:flex;align-items:center;gap:.75rem}
+.tb-store-btn{
+  display:flex;align-items:center;gap:.4rem;
+  background:rgba(201,169,110,.1);color:var(--gold);border-radius:var(--rr);
+  padding:.45rem 1rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid rgba(201,169,110,.2);transition:all .2s;cursor:pointer;
+}
+.tb-store-btn:hover{background:var(--gold);color:var(--ink)}
+.tb-logout{
+  background:rgba(239,68,68,.1);color:#EF4444;border-radius:var(--rr);
+  padding:.45rem .85rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid rgba(239,68,68,.2);cursor:pointer;transition:all .2s;
+}
+.tb-logout:hover{background:#EF4444;color:#fff}
+
+/* MAIN LAYOUT */
+.main{max-width:1200px;margin:0 auto;padding:2rem 1.5rem}
+
+/* STATS BAR */
+.stats-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;
+}
+.scard{
+  background:rgba(255,248,240,.04);border:1px solid rgba(201,169,110,.12);
+  border-radius:var(--r);padding:1.1rem 1.25rem;
+}
+.sc-num{font-family:var(--ff);font-size:2rem;color:var(--gold);line-height:1}
+.sc-lbl{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:.3rem}
+@media(max-width:640px){.stats-bar{grid-template-columns:repeat(2,1fr)}}
+
+/* SECTION HEADER */
+.sec-hdr{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;
+}
+.sec-hdr h2{font-family:var(--ff);font-size:1.4rem;color:var(--gold-l)}
+.sec-hdr p{font-size:.78rem;color:var(--muted);margin-top:.2rem}
+
+/* BUTTONS */
+.btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  padding:.65rem 1.4rem;border-radius:var(--rr);
+  font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  transition:all .2s;cursor:pointer;white-space:nowrap;
+}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:var(--gold-d);color:#fff;transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--gold);border:1px solid rgba(201,169,110,.3)}
+.btn-outline:hover{background:rgba(201,169,110,.1)}
+.btn-red{background:rgba(239,68,68,.15);color:#EF4444;border:1px solid rgba(239,68,68,.2)}
+.btn-red:hover{background:#EF4444;color:#fff}
+.btn-green{background:rgba(34,197,94,.15);color:#22C55E;border:1px solid rgba(34,197,94,.2)}
+.btn-green:hover{background:#22C55E;color:#fff}
+.btn-sm{padding:.4rem .85rem;font-size:.65rem}
+
+/* FILTER */
+.filter-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.filter-chip{
+  padding:.4rem 1rem;border-radius:var(--rr);
+  background:rgba(255,255,255,.05);border:1px solid rgba(201,169,110,.15);
+  font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  cursor:pointer;transition:all .2s;
+}
+.filter-chip:hover,.filter-chip.on{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+/* PRODUCT TABLE / GRID */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.25rem}
+.prod-card{
+  background:rgba(255,248,240,.04);border:1px solid rgba(201,169,110,.12);
+  border-radius:14px;overflow:hidden;transition:all .25s;
+}
+.prod-card:hover{border-color:rgba(201,169,110,.3);transform:translateY(-2px)}
+.prod-card.out-of-stock{opacity:.6}
+.pc-img{
+  aspect-ratio:1;overflow:hidden;position:relative;
+  background:rgba(201,169,110,.08);
+}
+.pc-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.prod-card:hover .pc-img img{transform:scale(1.04)}
+.pc-img-placeholder{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-size:3rem;background:rgba(201,169,110,.06);
+}
+.pc-status{
+  position:absolute;top:.6rem;right:.6rem;
+  padding:.22rem .65rem;border-radius:var(--rr);font-size:.58rem;
+  letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+}
+.status-in{background:rgba(34,197,94,.2);color:#22C55E;border:1px solid rgba(34,197,94,.3)}
+.status-out{background:rgba(239,68,68,.2);color:#EF4444;border:1px solid rgba(239,68,68,.3)}
+.pc-badge{
+  position:absolute;top:.6rem;left:.6rem;
+  background:var(--rose);color:#fff;
+  padding:.22rem .65rem;border-radius:var(--rr);font-size:.58rem;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.pc-body{padding:1rem}
+.pc-cat{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.pc-name{font-family:var(--ff);font-size:1.05rem;color:var(--gold-l);margin-bottom:.25rem;line-height:1.3}
+.pc-mat{font-size:.72rem;color:var(--muted);margin-bottom:.75rem;line-height:1.5}
+.pc-price{font-family:var(--ff);font-size:1.15rem;color:var(--gold);margin-bottom:.85rem}
+.pc-cmp{font-size:.75rem;color:var(--muted);text-decoration:line-through;margin-left:.25rem}
+.pc-actions{display:flex;gap:.5rem}
+
+/* MODAL */
+.modal-bg{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:all .3s;padding:1rem;
+  backdrop-filter:blur(6px);
+}
+.modal-bg.open{opacity:1;visibility:visible}
+.modal{
+  background:#1A1208;border:1px solid rgba(201,169,110,.2);
+  border-radius:20px;width:100%;max-width:540px;
+  max-height:90vh;overflow-y:auto;
+  transform:translateY(20px);transition:transform .3s;
+}
+.modal-bg.open .modal{transform:translateY(0)}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem 1.75rem;border-bottom:1px solid rgba(201,169,110,.12);
+  position:sticky;top:0;background:#1A1208;z-index:1;
+}
+.modal-head h3{font-family:var(--ff);font-size:1.25rem;color:var(--gold-l)}
+.modal-close{font-size:1.2rem;color:var(--muted);cursor:pointer;transition:color .2s;background:none;border:none}
+.modal-close:hover{color:var(--gold)}
+.modal-body{padding:1.75rem}
+.mfield{margin-bottom:1.25rem}
+.mfield label{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.5rem;
+}
+.mfield input,.mfield textarea,.mfield select{
+  width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,169,110,.2);border-radius:var(--r);
+  color:var(--gold-l);font-size:.9rem;outline:none;
+  transition:border-color .2s;appearance:none;
+}
+.mfield input:focus,.mfield textarea:focus,.mfield select:focus{border-color:var(--gold)}
+.mfield input::placeholder,.mfield textarea::placeholder{color:rgba(168,147,126,.5)}
+.mfield select option{background:#1A1208;color:var(--gold-l)}
+.mrow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.mfield-toggle{display:flex;align-items:center;gap:.85rem}
+.toggle{
+  width:44px;height:24px;background:rgba(255,255,255,.1);border-radius:var(--rr);
+  position:relative;cursor:pointer;transition:background .2s;border:none;flex-shrink:0;
+}
+.toggle.on{background:var(--green)}
+.toggle::after{
+  content:'';position:absolute;top:2px;left:2px;
+  width:20px;height:20px;border-radius:50%;background:#fff;
+  transition:transform .2s;
+}
+.toggle.on::after{transform:translateX(20px)}
+.toggle-lbl{font-size:.82rem;color:var(--muted)}
+.img-preview{
+  width:100%;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;
+  background:rgba(201,169,110,.06);border:1px solid rgba(201,169,110,.15);
+  display:flex;align-items:center;justify-content:center;margin-top:.6rem;
+  font-size:.78rem;color:var(--muted);
+}
+.img-preview img{width:100%;height:100%;object-fit:cover}
+.modal-foot{
+  display:flex;gap:.75rem;justify-content:flex-end;
+  padding:1.25rem 1.75rem;border-top:1px solid rgba(201,169,110,.12);
+  position:sticky;bottom:0;background:#1A1208;
+}
+
+/* DELETE CONFIRM */
+.del-modal .modal{max-width:400px;text-align:center}
+.del-icon{font-size:3rem;margin-bottom:1rem}
+.del-modal .modal-body{padding:2rem 1.75rem}
+.del-modal h3{font-family:var(--ff);font-size:1.3rem;color:var(--gold-l);margin-bottom:.6rem}
+.del-modal p{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+
+/* TOAST */
+.toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(10px);
+  z-index:9999;background:#1A1208;color:var(--gold-l);
+  padding:.8rem 1.75rem;border-radius:var(--rr);font-size:.82rem;
+  display:flex;align-items:center;gap:.5rem;
+  opacity:0;transition:all .3s;pointer-events:none;
+  border:1px solid rgba(201,169,110,.2);box-shadow:var(--sh2);
+  white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success .ti{color:var(--green)}
+.toast.error .ti{color:var(--rose)}
+.toast.info .ti{color:var(--gold)}
+
+/* SAVING OVERLAY */
+.saving{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9000;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;
+  opacity:0;visibility:hidden;transition:all .3s;backdrop-filter:blur(4px);
+}
+.saving.show{opacity:1;visibility:visible}
+.saving-spin{
+  width:48px;height:48px;border:3px solid rgba(201,169,110,.2);
+  border-top-color:var(--gold);border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.saving p{color:var(--gold-l);font-size:.9rem;letter-spacing:.08em}
+
+/* SETUP SCREEN */
+#setupScreen{
+  max-width:580px;margin:3rem auto;
+  background:rgba(255,248,240,.04);border:1px solid rgba(201,169,110,.2);
+  border-radius:20px;padding:2.5rem;display:none;
+}
+#setupScreen h2{font-family:var(--ff);font-size:1.5rem;color:var(--gold-l);margin-bottom:.5rem}
+#setupScreen p{font-size:.85rem;color:var(--muted);line-height:1.8;margin-bottom:1.25rem}
+.setup-step{
+  display:flex;gap:1rem;padding:1rem;background:rgba(201,169,110,.05);
+  border-radius:var(--r);border:1px solid rgba(201,169,110,.12);margin-bottom:.75rem;
+  align-items:flex-start;
+}
+.step-num{
+  width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;
+  flex-shrink:0;margin-top:.1rem;
+}
+.step-content strong{display:block;font-size:.85rem;color:var(--gold-l);margin-bottom:.25rem}
+.step-content p{font-size:.78rem;color:var(--muted);line-height:1.6}
+.step-content a{color:var(--gold);border-bottom:1px solid rgba(201,169,110,.3)}
+.token-field{margin-top:1.5rem}
+.token-field label{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+.token-field input{
+  width:100%;padding:.8rem 1rem;background:rgba(255,255,255,.06);
+  border:1px solid rgba(201,169,110,.2);border-radius:var(--r);
+  color:var(--gold-l);font-size:.88rem;outline:none;
+}
+.token-field input:focus{border-color:var(--gold)}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:4rem 2rem;color:var(--muted)}
+.empty span{font-size:3rem;display:block;margin-bottom:1rem}
+.empty p{font-size:.88rem;line-height:1.8;margin-bottom:1.5rem}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .topbar{padding:.75rem 1rem}
+  .main{padding:1.25rem 1rem}
+  .mrow{grid-template-columns:1fr}
+  .modal-foot{flex-direction:column}
+  .modal-foot .btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- SAVING OVERLAY -->
+<div class="saving" id="saving">
+  <div class="saving-spin"></div>
+  <p id="savingMsg">Saving to GitHub…</p>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="ti" id="ti">✦</span><span id="tm"></span></div>
+
+<!-- ══════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">✦ Praju</div>
+    <div class="login-sub">Admin Panel</div>
+    <h2>Welcome back 👋</h2>
+    <p>Sign in to manage your jewellery catalogue</p>
+    <div class="login-field">
+      <label>Password</label>
+      <input type="password" id="loginPwd" placeholder="Enter your password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+    <button class="login-btn" onclick="doLogin()">Sign In →</button>
+    <div class="login-err" id="loginErr">❌ Wrong password. Try again.</div>
+    <div class="setup-hint">
+      <strong>🔑 First time setup?</strong>
+      Default password: <strong style="color:var(--gold)">praju2025</strong><br/>
+      Change it in the Settings section after login.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MAIN APP
+══════════════════════════════════════ -->
+<div id="app">
+
+  <!-- TOP BAR -->
+  <nav class="topbar">
+    <div class="tb-logo">
+      ✦ Praju <span>Admin Panel</span>
+    </div>
+    <div class="tb-right">
+      <button class="tb-store-btn" onclick="window.open('https://vitthal8.github.io/praju-jewellery-website','_blank')">
+        🌐 View Store
+      </button>
+      <button class="tb-logout" onclick="doLogout()">Logout</button>
+    </div>
+  </nav>
+
+  <div class="main">
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+      <div class="scard">
+        <div class="sc-num" id="statTotal">0</div>
+        <div class="sc-lbl">Total Products</div>
+      </div>
+      <div class="scard">
+        <div class="sc-num" id="statInStock">0</div>
+        <div class="sc-lbl">In Stock</div>
+      </div>
+      <div class="scard">
+        <div class="sc-num" id="statOutStock">0</div>
+        <div class="sc-lbl">Out of Stock</div>
+      </div>
+      <div class="scard">
+        <div class="sc-num" id="statCats">0</div>
+        <div class="sc-lbl">Categories</div>
+      </div>
+    </div>
+
+    <!-- SETUP NOTICE (shown if no token) -->
+    <div id="setupScreen">
+      <h2>⚙️ One-Time Setup Required</h2>
+      <p>To save changes to your store, you need a <strong style="color:var(--gold)">GitHub Personal Access Token</strong>. This is a free one-time setup. Follow the steps below:</p>
+      <div class="setup-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Go to GitHub Token Settings</strong>
+          <p>Visit: <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a></p>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Create the token</strong>
+          <p>Note: "Praju Admin" · Expiration: No expiration · Scopes: tick <strong style="color:var(--gold)">repo</strong> checkbox only</p>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Copy the token</strong>
+          <p>It starts with <code style="color:var(--gold)">ghp_</code> — copy it immediately, you only see it once!</p>
+        </div>
+      </div>
+      <div class="setup-step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Paste it below and save</strong>
+          <p>Token is saved only in your browser — never shared with anyone.</p>
+        </div>
+      </div>
+      <div class="token-field">
+        <label>GitHub Personal Access Token</label>
+        <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/>
+      </div>
+      <br/>
+      <button class="btn btn-gold" onclick="saveToken()" style="margin-top:.5rem">Save Token & Start Managing ✦</button>
+    </div>
+
+    <!-- CATALOGUE SECTION -->
+    <div id="catalogueSection">
+      <div class="sec-hdr">
+        <div>
+          <h2>Product Catalogue</h2>
+          <p>Manage your jewellery collection — add, edit, delete products</p>
+        </div>
+        <button class="btn btn-gold" onclick="openAddModal()">+ Add New Product</button>
+      </div>
+
+      <!-- FILTER CHIPS -->
+      <div class="filter-row">
+        <button class="filter-chip on" onclick="filterProds(this,'all')">All</button>
+        <button class="filter-chip" onclick="filterProds(this,'mangalsutra')">Mangalsutra</button>
+        <button class="filter-chip" onclick="filterProds(this,'earrings')">Earrings</button>
+        <button class="filter-chip" onclick="filterProds(this,'nath')">Nath</button>
+        <button class="filter-chip" onclick="filterProds(this,'bracelet')">Bracelets</button>
+        <button class="filter-chip" onclick="filterProds(this,'custom')">Custom</button>
+        <button class="filter-chip" onclick="filterProds(this,'out')">Out of Stock</button>
+      </div>
+
+      <!-- PRODUCT GRID -->
+      <div class="prod-grid" id="prodGrid"></div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ══════════════════════════════════════
+     ADD / EDIT MODAL
+══════════════════════════════════════ -->
+<div class="modal-bg" id="productModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Add New Product</h3>
+      <button class="modal-close" onclick="closeModal('productModal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="editId"/>
+
+      <div class="mfield">
+        <label>Product Name <span style="color:var(--rose)">*</span></label>
+        <input type="text" id="pName" placeholder="e.g. Pearl Cluster Earrings"/>
+      </div>
+
+      <div class="mrow">
+        <div class="mfield">
+          <label>Category <span style="color:var(--rose)">*</span></label>
+          <select id="pCat">
+            <option value="">Select…</option>
+            <option value="mangalsutra">Mangalsutra</option>
+            <option value="earrings">Earrings</option>
+            <option value="nath">Nath</option>
+            <option value="bracelet">Bracelet</option>
+            <option value="necklace">Necklace</option>
+            <option value="custom">Custom</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="mfield">
+          <label>Badge <span style="font-style:italic;color:var(--muted);text-transform:none;letter-spacing:0">(optional)</span></label>
+          <select id="pBadge">
+            <option value="">None</option>
+            <option value="New">New</option>
+            <option value="Bestseller">Bestseller</option>
+            <option value="Hot">Hot</option>
+            <option value="Premium">Premium</option>
+            <option value="Sale">Sale</option>
+            <option value="Custom">Custom</option>
+            <option value="Limited">Limited</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mrow">
+        <div class="mfield">
+          <label>Price (₹) <span style="color:var(--rose)">*</span></label>
+          <input type="number" id="pPrice" placeholder="499" min="1"/>
+        </div>
+        <div class="mfield">
+          <label>Original Price (₹) <span style="font-style:italic;color:var(--muted);text-transform:none;letter-spacing:0">(for strikethrough)</span></label>
+          <input type="number" id="pCmpPrice" placeholder="699" min="1"/>
+        </div>
+      </div>
+
+      <div class="mfield">
+        <label>Material / Description</label>
+        <textarea id="pMat" rows="2" placeholder="e.g. Gold-plated brass, freshwater pearls, anti-tarnish coating"></textarea>
+      </div>
+
+      <div class="mfield">
+        <label>
+          Image Path or URL
+          <span style="font-size:.65rem;color:var(--muted);text-transform:none;letter-spacing:0">For uploaded images use: images/filename.jpg</span>
+        </label>
+        <input type="text" id="pImg" placeholder="images/your-photo.jpg" oninput="previewImg(this.value)"/>
+        <div class="img-preview" id="imgPreview">
+          <span>Image preview will appear here</span>
+        </div>
+      </div>
+
+      <div class="mfield">
+        <div class="mfield-toggle">
+          <button class="toggle on" id="stockToggle" onclick="toggleStock()"></button>
+          <span class="toggle-lbl" id="stockLabel">✅ In Stock</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeModal('productModal')">Cancel</button>
+      <button class="btn btn-gold" onclick="saveProduct()">Save Product ✦</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM MODAL -->
+<div class="modal-bg del-modal" id="deleteModal">
+  <div class="modal">
+    <div class="modal-body">
+      <div class="del-icon">🗑️</div>
+      <h3>Delete Product?</h3>
+      <p id="delProductName" style="color:var(--gold);font-family:var(--ff);font-size:1.1rem;margin-bottom:.5rem"></p>
+      <p>This will permanently remove the product from your store. This cannot be undone.</p>
+      <div style="display:flex;gap:.75rem;justify-content:center;margin-top:1.5rem">
+        <button class="btn btn-outline" onclick="closeModal('deleteModal')">Cancel</button>
+        <button class="btn btn-red" onclick="confirmDelete()">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// CONFIG — Change REPO_OWNER and REPO_NAME if needed
+// ══════════════════════════════════════════════════════════════════
+const CONFIG = {
+  owner: 'Vitthal8',
+  repo: 'praju-jewellery-website',
+  file: 'products.json',
+  branch: 'main',
+  password: localStorage.getItem('praju_pwd') || 'praju2025'
+};
+
+// ══════════════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════════════
+let products = [];
+let deleteTargetId = null;
+let stockIsOn = true;
+let activeFilter = 'all';
+let fileSha = '';
+
+// ══════════════════════════════════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════════════════════════════════
+function doLogin() {
+  const pwd = document.getElementById('loginPwd').value;
+  if (pwd === CONFIG.password) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    init();
+  } else {
+    document.getElementById('loginErr').style.display = 'block';
+    document.getElementById('loginPwd').value = '';
+    document.getElementById('loginPwd').focus();
+  }
+}
+
+function doLogout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginPwd').value = '';
+}
+
+// ══════════════════════════════════════════════════════════════════
+// GITHUB API
+// ══════════════════════════════════════════════════════════════════
+function getToken() { return localStorage.getItem('praju_github_token') || ''; }
+
+function saveToken() {
+  const t = document.getElementById('tokenInput').value.trim();
+  if (!t.startsWith('ghp_') && !t.startsWith('github_pat_')) {
+    showToast('Please enter a valid token (starts with ghp_)', 'error'); return;
+  }
+  localStorage.setItem('praju_github_token', t);
+  document.getElementById('setupScreen').style.display = 'none';
+  showToast('Token saved! Loading your products…', 'success');
+  loadProducts();
+}
+
+async function loadProducts() {
+  const token = getToken();
+  if (!token) {
+    document.getElementById('setupScreen').style.display = 'block';
+    // Try loading from raw URL without auth (read-only)
+    try {
+      const url = `https://raw.githubusercontent.com/${CONFIG.owner}/${CONFIG.repo}/${CONFIG.branch}/${CONFIG.file}?t=${Date.now()}`;
+      const res = await fetch(url);
+      if (res.ok) {
+        products = await res.json();
+        renderProducts();
+        updateStats();
+        showToast('Products loaded (read-only mode)', 'info');
+      }
+    } catch(e) {}
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.file}`,
+      { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } }
+    );
+    if (res.status === 401) { showToast('Token expired or invalid. Please update it.', 'error'); document.getElementById('setupScreen').style.display = 'block'; return; }
+    const data = await res.json();
+    fileSha = data.sha;
+    products = JSON.parse(atob(data.content.replace(/\n/g,'')));
+    document.getElementById('setupScreen').style.display = 'none';
+    renderProducts();
+    updateStats();
+  } catch(e) {
+    showToast('Could not load products: ' + e.message, 'error');
+  }
+}
+
+async function saveToGitHub() {
+  const token = getToken();
+  if (!token) { showToast('Please set up your GitHub token first', 'error'); return false; }
+
+  showSaving('Saving to your store…');
+  try {
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(products, null, 2))));
+    const body = { message: 'Update products via Admin Panel', content, branch: CONFIG.branch };
+    if (fileSha) body.sha = fileSha;
+
+    const res = await fetch(
+      `https://api.github.com/repos/${CONFIG.owner}/${CONFIG.repo}/contents/${CONFIG.file}`,
+      {
+        method: 'PUT',
+        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      }
+    );
+    const data = await res.json();
+    if (res.ok) {
+      fileSha = data.content.sha;
+      hideSaving();
+      return true;
+    } else {
+      hideSaving();
+      showToast('Save failed: ' + (data.message || 'Unknown error'), 'error');
+      return false;
+    }
+  } catch(e) {
+    hideSaving();
+    showToast('Save failed: ' + e.message, 'error');
+    return false;
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// RENDER
+// ══════════════════════════════════════════════════════════════════
+function renderProducts(filter) {
+  filter = filter || activeFilter;
+  const grid = document.getElementById('prodGrid');
+  let list = products;
+  if (filter === 'out') list = products.filter(p => !p.inStock);
+  else if (filter !== 'all') list = products.filter(p => p.cat === filter || p.category === filter);
+
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
+      <span>✦</span>
+      <p>No products in this category yet.<br/>Click "+ Add New Product" to get started!</p>
+      <button class="btn btn-gold" onclick="openAddModal()">+ Add Product</button>
+    </div>`; return;
+  }
+
+  grid.innerHTML = list.map(p => {
+    const cat = p.cat || p.category || '';
+    const img = p.img || p.image || '';
+    const cmp = p.comparePrice || p.cmp;
+    const stock = p.inStock !== false;
+    const imgHtml = img
+      ? `<img src="${img}" alt="${p.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=pc-img-placeholder>💍</div>'">`
+      : `<div class="pc-img-placeholder">💍</div>`;
+    return `
+    <div class="prod-card ${stock?'':'out-of-stock'}" id="pc${p.id}">
+      <div class="pc-img">
+        ${imgHtml}
+        <span class="pc-status ${stock?'status-in':'status-out'}">${stock?'In Stock':'Out of Stock'}</span>
+        ${p.badge ? `<span class="pc-badge">${p.badge}</span>` : ''}
+      </div>
+      <div class="pc-body">
+        <div class="pc-cat">${cat}</div>
+        <div class="pc-name">${p.name}</div>
+        <div class="pc-mat">${p.material || p.mat || ''}</div>
+        <div class="pc-price">₹${(p.price||0).toLocaleString('en-IN')}${cmp?`<span class="pc-cmp">₹${cmp.toLocaleString('en-IN')}</span>`:''}</div>
+        <div class="pc-actions">
+          <button class="btn btn-outline btn-sm" onclick="openEditModal(${p.id})">✏️ Edit</button>
+          <button class="btn btn-${stock?'red':'green'} btn-sm" onclick="toggleStockById(${p.id})">${stock?'Mark Sold Out':'Mark In Stock'}</button>
+          <button class="btn btn-red btn-sm" onclick="openDeleteModal(${p.id})">🗑️</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateStats() {
+  const inStock = products.filter(p => p.inStock !== false).length;
+  const cats = [...new Set(products.map(p => p.cat || p.category))].filter(Boolean).length;
+  document.getElementById('statTotal').textContent = products.length;
+  document.getElementById('statInStock').textContent = inStock;
+  document.getElementById('statOutStock').textContent = products.length - inStock;
+  document.getElementById('statCats').textContent = cats;
+}
+
+function filterProds(btn, cat) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('on'));
+  btn.classList.add('on');
+  activeFilter = cat;
+  renderProducts(cat);
+}
+
+// ══════════════════════════════════════════════════════════════════
+// ADD / EDIT
+// ══════════════════════════════════════════════════════════════════
+function openAddModal() {
+  document.getElementById('modalTitle').textContent = 'Add New Product';
+  document.getElementById('editId').value = '';
+  document.getElementById('pName').value = '';
+  document.getElementById('pCat').value = '';
+  document.getElementById('pBadge').value = '';
+  document.getElementById('pPrice').value = '';
+  document.getElementById('pCmpPrice').value = '';
+  document.getElementById('pMat').value = '';
+  document.getElementById('pImg').value = '';
+  document.getElementById('imgPreview').innerHTML = '<span>Image preview will appear here</span>';
+  stockIsOn = true;
+  updateToggle();
+  openModal('productModal');
+}
+
+function openEditModal(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('modalTitle').textContent = 'Edit Product';
+  document.getElementById('editId').value = p.id;
+  document.getElementById('pName').value = p.name || '';
+  document.getElementById('pCat').value = p.cat || p.category || '';
+  document.getElementById('pBadge').value = p.badge || '';
+  document.getElementById('pPrice').value = p.price || '';
+  document.getElementById('pCmpPrice').value = p.comparePrice || p.cmp || '';
+  document.getElementById('pMat').value = p.material || p.mat || '';
+  const img = p.img || p.image || '';
+  document.getElementById('pImg').value = img;
+  previewImg(img);
+  stockIsOn = p.inStock !== false;
+  updateToggle();
+  openModal('productModal');
+}
+
+async function saveProduct() {
+  const name = document.getElementById('pName').value.trim();
+  const cat = document.getElementById('pCat').value;
+  const price = parseInt(document.getElementById('pPrice').value);
+
+  if (!name) { showToast('Please enter a product name', 'error'); return; }
+  if (!cat) { showToast('Please select a category', 'error'); return; }
+  if (!price || price < 1) { showToast('Please enter a valid price', 'error'); return; }
+
+  const editId = document.getElementById('editId').value;
+  const cmpRaw = parseInt(document.getElementById('pCmpPrice').value);
+
+  const productData = {
+    id: editId ? parseInt(editId) : Date.now(),
+    name,
+    category: cat,
+    cat,
+    price,
+    comparePrice: cmpRaw || null,
+    material: document.getElementById('pMat').value.trim(),
+    image: document.getElementById('pImg').value.trim(),
+    img: document.getElementById('pImg').value.trim(),
+    badge: document.getElementById('pBadge').value,
+    inStock: stockIsOn
+  };
+
+  if (editId) {
+    const idx = products.findIndex(p => p.id === parseInt(editId));
+    if (idx !== -1) products[idx] = productData;
+  } else {
+    products.push(productData);
+  }
+
+  closeModal('productModal');
+  const ok = await saveToGitHub();
+  if (ok) {
+    renderProducts();
+    updateStats();
+    showToast(editId ? '✅ Product updated!' : '✅ Product added!', 'success');
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// DELETE
+// ══════════════════════════════════════════════════════════════════
+function openDeleteModal(id) {
+  deleteTargetId = id;
+  const p = products.find(x => x.id === id);
+  document.getElementById('delProductName').textContent = p ? p.name : '';
+  openModal('deleteModal');
+}
+
+async function confirmDelete() {
+  products = products.filter(p => p.id !== deleteTargetId);
+  closeModal('deleteModal');
+  const ok = await saveToGitHub();
+  if (ok) {
+    renderProducts();
+    updateStats();
+    showToast('🗑️ Product deleted', 'info');
+  }
+  deleteTargetId = null;
+}
+
+// ══════════════════════════════════════════════════════════════════
+// STOCK TOGGLE
+// ══════════════════════════════════════════════════════════════════
+function toggleStock() {
+  stockIsOn = !stockIsOn;
+  updateToggle();
+}
+
+function updateToggle() {
+  const btn = document.getElementById('stockToggle');
+  const lbl = document.getElementById('stockLabel');
+  btn.className = 'toggle' + (stockIsOn ? ' on' : '');
+  lbl.textContent = stockIsOn ? '✅ In Stock' : '❌ Out of Stock';
+}
+
+async function toggleStockById(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  p.inStock = !p.inStock;
+  const ok = await saveToGitHub();
+  if (ok) {
+    renderProducts();
+    updateStats();
+    showToast(p.inStock ? '✅ Marked as In Stock' : '❌ Marked as Out of Stock', p.inStock ? 'success' : 'info');
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// IMAGE PREVIEW
+// ══════════════════════════════════════════════════════════════════
+function previewImg(src) {
+  const el = document.getElementById('imgPreview');
+  if (!src) { el.innerHTML = '<span>Image preview will appear here</span>'; return; }
+  el.innerHTML = `<img src="${src}" alt="Preview" onerror="this.parentElement.innerHTML='<span>⚠️ Image not found — check the path</span>'" style="width:100%;height:100%;object-fit:cover">`;
+}
+
+// ══════════════════════════════════════════════════════════════════
+// MODAL HELPERS
+// ══════════════════════════════════════════════════════════════════
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-bg').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+
+// ══════════════════════════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════════════════════════
+let toastTimer;
+function showToast(msg, type='info') {
+  const t = document.getElementById('toast');
+  const icon = { success:'✅', error:'❌', info:'✦' };
+  document.getElementById('ti').textContent = icon[type] || '✦';
+  document.getElementById('tm').textContent = msg;
+  t.className = `toast ${type} show`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SAVING OVERLAY
+// ══════════════════════════════════════════════════════════════════
+function showSaving(msg) {
+  document.getElementById('savingMsg').textContent = msg || 'Saving…';
+  document.getElementById('saving').classList.add('show');
+}
+function hideSaving() { document.getElementById('saving').classList.remove('show'); }
+
+// ══════════════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════════════
+function init() {
+  loadProducts();
+}
+
+// Enter key on login
+document.getElementById('loginPwd').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Pearl Hoop Earrings",
+    "category": "earrings",
+    "price": 449,
+    "comparePrice": 649,
+    "material": "Gold-plated wire, freshwater pearls",
+    "image": "images/pearl-hoop-earrings.jpg",
+    "badge": "Bestseller",
+    "inStock": true
+  },
+  {
+    "id": 2,
+    "name": "Floral Mangalsutra Set",
+    "category": "mangalsutra",
+    "price": 799,
+    "comparePrice": 1199,
+    "material": "White daisy florals, ruby centres, gold chain",
+    "image": "images/floral-mangalsutra-set.jpg",
+    "badge": "New",
+    "inStock": true
+  },
+  {
+    "id": 3,
+    "name": "Lotus Mangalsutra Set",
+    "category": "mangalsutra",
+    "price": 699,
+    "comparePrice": 999,
+    "material": "Lotus pendant, pearl cluster earrings, black bead chain",
+    "image": "images/lotus-mangalsutra-set.jpg",
+    "badge": "Hot",
+    "inStock": true
+  },
+  {
+    "id": 4,
+    "name": "Gold Moon Nath",
+    "category": "nath",
+    "price": 549,
+    "comparePrice": 799,
+    "material": "Antique gold finish, freshwater pearls, filigree work",
+    "image": "images/gold-moon-nath.jpg",
+    "badge": "",
+    "inStock": true
+  },
+  {
+    "id": 5,
+    "name": "Peacock Mangalsutra Set",
+    "category": "mangalsutra",
+    "price": 899,
+    "comparePrice": 1299,
+    "material": "Peacock feather pendants, pearl and emerald stones",
+    "image": "images/peacock-mangalsutra-set.jpg",
+    "badge": "Premium",
+    "inStock": true
+  },
+  {
+    "id": 6,
+    "name": "Custom Jewellery",
+    "category": "custom",
+    "price": 399,
+    "comparePrice": null,
+    "material": "Your design, your choice — made just for you",
+    "image": "images/gold-moon-nath.jpg",
+    "badge": "Custom",
+    "inStock": true
+  }
+]
