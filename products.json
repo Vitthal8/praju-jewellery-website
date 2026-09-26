@@ -19,7 +19,7 @@
     "material": "White daisy florals, ruby centres, gold chain",
     "image": "images/floral-mangalsutra-set.jpg",
     "badge": "New",
-    "inStock": true
+    "inStock": false
   },
   {
     "id": 3,
@@ -60,7 +60,7 @@
     "category": "custom",
     "price": 399,
     "comparePrice": null,
-    "material": "Your design, your choice — made just for you",
+    "material": "Your design, your choice â made just for you",
     "image": "images/gold-moon-nath.jpg",
     "badge": "Custom",
     "inStock": true
