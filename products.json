@@ -14,12 +14,14 @@
     "id": 2,
     "name": "Floral Mangalsutra Set",
     "category": "mangalsutra",
+    "cat": "mangalsutra",
     "price": 799,
     "comparePrice": 1199,
     "material": "White daisy florals, ruby centres, gold chain",
     "image": "images/floral-mangalsutra-set.jpg",
+    "img": "images/floral-mangalsutra-set.jpg",
     "badge": "New",
-    "inStock": false
+    "inStock": true
   },
   {
     "id": 3,
