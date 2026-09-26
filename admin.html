@@ -722,7 +722,7 @@ function renderProducts(filter) {
     const cmp = p.comparePrice || p.cmp;
     const stock = p.inStock !== false;
     const imgHtml = img
-      ? `<img src="${img}" alt="${p.name}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=pc-img-placeholder>💍</div>'">`
+      ? `<img src="${img}" alt="${p.name}" loading="lazy" onerror='this.onerror=null;this.outerHTML="&lt;div class=&#39;pc-img-placeholder&#39;&gt;💍&lt;/div&gt;"'>`
       : `<div class="pc-img-placeholder">💍</div>`;
     return `
     <div class="prod-card ${stock?'':'out-of-stock'}" id="pc${p.id}">
